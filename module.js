@@ -9,13 +9,12 @@
 		this.$ele = $(ele);
 		this.option = options;
 		this.option2 = options2;
-		this.data=data;
-		this.data=$(data);
 	};
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
-		speed:1000,
-		progressNumber : 90,
+		 pageSize: 6 ,
+		// speed:1000,
+		// progressNumber : 90,
 		// data:[
 		// 	'./imgs/hotes-1.jpg',
 	 //        './imgs/img001.jpg',
@@ -37,10 +36,10 @@
 	
 //這裡有clearTimer()
 	Module.prototype.init = function () {
-		var progressNumber=this.option.progressNumber;
- 		this.addTransition();
- 		//設定result長度
- 		this.$bar.width(progressNumber + '%');
+		$(".smallPic").click(function(){
+    	$(".smallPic").removeClass("select");
+        $(this).addClass( "select" );
+    });
 	};
 	
 
