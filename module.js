@@ -2,40 +2,37 @@
 	
 	'use strict';
 
-	var ModuleName='ps_flpk';
+	var ModuleName='carousel';
 
 	var Module = function ( ele, options ,options2) {
 		this.ele = ele;
 		this.$ele = $(ele);
 		this.option = options;
 		this.option2 = options2;
-		this.progressPercent = 0;
-		this.$result=$('<div class="result" ></div>');
-		this.$bar = $('.result');
-		this.$totalWidth =$('.ps_flpk').width();
-		this.transitionEndEvent = function (transitions){
-			var a = document.createElement("fakeelement");
-			for (var t in transitions){
-				if (a.style[t] !== undefined){
-					return transitions[t];
-				}
-			}
-			}({
-				"transition": "transitionend",
-			});
-		//判斷模組有在進行transition!!!	
-		// this.getBarLength=function(barLenght){
-		//   	var barLenght = $('.result').width()/this.$totalWidth*100;
-		//   	console.log( barLenght+'%');
-		//   }
-		// this.Time = setInterval(this.getBarLength, 100);
-
+		this.data=data;
+		this.data=$(data);
 	};
-	
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
 		speed:1000,
 		progressNumber : 90,
+		// data:[
+		// 	'./imgs/hotes-1.jpg',
+	 //        './imgs/img001.jpg',
+	 //        'http://fakeimg.pl/350x200/?text=Hello',
+	 //        './imgs/img002.jpg',
+	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	 //        './imgs/img003.jpg',
+	 //        './imgs/img004.jpg',
+	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	 //        './imgs/img005.jpg',
+	 //        'http://fakeimg.pl/350x200/?text=Hello',
+	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	 //        'http://fakeimg.pl/350x200/?text=Hello',
+	 //        './imgs/img006.jpg',
+	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	 //        'http://fakeimg.pl/350x200/?text=Hello',
+		// ],
      }
 	
 //這裡有clearTimer()
@@ -46,63 +43,6 @@
  		this.$bar.width(progressNumber + '%');
 	};
 	
-	Module.prototype.assignPercent = function( asOpt , asOpt2){
-		if(asOpt <= 100 && asOpt >= 0){
-			this.$bar.width(asOpt + '%');
-		}else if( asOpt < 0){
-			this.$bar.width(0 + '%');
-		}else{
-			this.$bar.width(100 + '%');
-		}
-		var progressNumber = asOpt2;
-		var number=asOpt;
-		progressNumber(number+'%');			 		
-	}
-/////完成80%
-	Module.prototype.nextProgress = function(neOpt){
-		var nowNumber = this.$bar.width() / this.$totalWidth *100;
-		//抓出result的width;
-		var nextNumber= ( 100 - nowNumber ) / 5 + nowNumber;
-		var nowNumber =+ nextNumber;
-		if( nowNumber < 100 ){
-			this.$bar.width(nowNumber+'%');
-		}
-		if(typeof neOpt==='function' ){
-			var progressNumber = neOpt;
-			var number = nowNumber;
-			progressNumber(number+'%');
-		}
-	}
-
-
-	Module.prototype.doneProgress = function(dOpt){
-		this.$bar.width(100+'%');
-		if(typeof dOpt==='function' ){
-			var progressNumber = dOpt;
-			progressNumber(100+'%');
-		}		  		
-	}
-
-	Module.prototype.zeroProgress = function(zOpt){
-		this.$bar.width(0 +'%');
-		if(typeof zOpt==='function' ){
-			var progressNumber = zOpt;
-			progressNumber(0+'%');
-		}
-	}
-
-	Module.prototype.addTransition = function() {
-		var transtionNumber = this.option.speed+'ms';
-		this.$bar.css('transition',transtionNumber);
-	};
-		
-   	Module.prototype.transitionEnd = function () {
-   		var nowWidth=$('.result').width() /this.$totalWidth*100;
-   		console.log(nowWidth+'%');
-   		return this;
-   		// console.log('我知道這樣不好');
-	};
-
 
 
 	$.fn[ModuleName] = function ( method, options, options2 ) {

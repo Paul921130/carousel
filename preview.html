@@ -14,9 +14,37 @@
 <div id="test1"></div>
 <div class="container">
 	<div class="row">
-		<div class="col-lg-24 col-md-24 col-xs-24">
+		<div class="col-lg-12 col-md-12 col-xs-12">
 			<!-- 制定HTML結構 開始  -->
-		<div class="carousel"></div>
+		<div class="carousel">
+			<!-- <a href=""> -->
+				<img src="http://fakeimg.pl/350x200/?text=Hello" alt="">
+				
+				<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">
+					<a class="up-left" href=""><</a>
+					<div class="upcontent"></div>
+					<a class="up-right" href="">></a>
+				</div>
+				
+				<div class="img-down">
+					<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考
+					</div>
+					<div class="img-down_right">查看大圖<img src="./zoomIn.png" alt=""></div>
+				</div>
+		<!-- 	</a>	 -->		
+		</div>
+		<div class="down">
+				<a class="down-left"> < </a>
+				<ul>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+					<li></li>
+				</ul>
+				<a class="down-right"> > </a>
+			</div>
 			<!-- 制定HTML結構 結束 -->
 		</div>
 	</div>
@@ -27,7 +55,48 @@
 
 
 <script>
-	
+// 	$('.carousel').carousel({
+//     // 輸入圖片資料來源
+//     data: [
+//         './imgs/hotes-1.jpg',
+//         './imgs/img001.jpg',
+//         'http://fakeimg.pl/350x200/?text=Hello',
+//         './imgs/img002.jpg',
+//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
+//         './imgs/img003.jpg',
+//         './imgs/img004.jpg',
+//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
+//         './imgs/img005.jpg',
+//         'http://fakeimg.pl/350x200/?text=Hello',
+//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
+//         'http://fakeimg.pl/350x200/?text=Hello',
+//         './imgs/img006.jpg',
+//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
+//         'http://fakeimg.pl/350x200/?text=Hello',
+//     ],
+//     // heightRate:0.5625,//通過比例值計算高度
+//     pageSize:6, //縮略圖個數
+//     // 點擊看大圖時執行 callback
+//     onClickBigImg: function($bigimgBtn){
+//         console.log($bigimgBtn)
+//     },//callBack jquery選取物件
+//     // 點擊下一張圖時執行 callback
+//     onClickNext: function($nextBtn){
+//         console.log($nextBtn)
+//     },
+//     // 點擊上一張圖時執行 callback
+//     onClickPrev: function($prevBtn){
+//         console.log($prevBtn)
+//     },
+//     // 點擊下一組圖時執行 callback!!!
+//     onClickNextRound: function($nextroundBtn){
+//         console.log($nextroundBtn)
+//     },
+//     // 點擊上一組圖時執行 callback!!!
+//     onClickPrevRound: function($lastroundBtn){
+//         console.log($lastroundBtn)
+//     }
+// });
 
 </script>
 

@@ -30,7 +30,7 @@ $('.carousel').carousel({
     // 點擊看大圖時執行 callback
     onClickBigImg: function($bigimgBtn){
         console.log($bigimgBtn)
-    },
+    },//callBack jquery選取物件
     // 點擊下一張圖時執行 callback
     onClickNext: function($nextBtn){
         console.log($nextBtn)
