@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../core/core.css" rel="stylesheet">
 	<link href="css.css" rel="stylesheet">
-	<title>ProgressBar</title>
+	<title>carousel</title>
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="./module.js"></script>
 </head>
@@ -18,12 +18,12 @@
 			<!-- 制定HTML結構 開始  -->
 			<div class="carousel">
 				<!-- <a href=""> -->
-					<img src="http://fakeimg.pl/600x400/?text=Hello" alt="">
+					<img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">
 					
 					<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">
-						<a class="up-left" href=""><</a>
+						<a class="up-left" href="#"><</a>
 						<div class="upcontent"></div>
-						<a class="up-right" href="">></a>
+						<a class="up-right" href="#">></a>
 					</div>
 					
 					<div class="img-down">
@@ -52,10 +52,11 @@
 
 
 <script>
-    $(".smallPic").click(function(){
-    	$(".smallPic").removeClass("select");
-        $(this).addClass( "select" );
-    });
+$(".smallPic").click(function(){
+	        var a =this.src;
+	        console.log(a);                 
+            $(".mainPic").attr("src",a);      
+});//點擊換圖!!
   </script>
 
 
@@ -80,7 +81,7 @@
     //     'http://fakeimg.pl/350x200/?text=Hello',
     // ],
     // // heightRate:0.5625,//通過比例值計算高度
-   。 //縮略圖個數
+   	pageSize: 6 , //縮略圖個數
     // // 點擊看大圖時執行 callback
     // onClickBigImg: function($bigimgBtn){
     //     console.log($bigimgBtn)

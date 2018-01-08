@@ -12,9 +12,7 @@
 	};
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
-		 pageSize: 6 ,
-		// speed:1000,
-		// progressNumber : 90,
+		 pageSize:6,
 		// data:[
 		// 	'./imgs/hotes-1.jpg',
 	 //        './imgs/img001.jpg',
@@ -39,6 +37,8 @@
 		$(".smallPic").click(function(){
     	$(".smallPic").removeClass("select");
         $(this).addClass( "select" );
+    	
+
     });
 	};
 	
