@@ -6,7 +6,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link href="../core/core.css" rel="stylesheet">
 	<link href="css.css" rel="stylesheet">
-	<title>ProgressBar</title>
+	<title>carousel</title>
 	<script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
 	<script src="./module.js"></script>
 </head>
@@ -17,86 +17,89 @@
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<!-- 制定HTML結構 開始  -->
 			<div class="carousel">
-				<!-- <a href=""> -->
-					<img src="http://fakeimg.pl/600x400/?text=Hello" alt="">
+					<!-- <img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">
 					
 					<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">
-						<a class="up-left" href=""><</a>
+						<a class="up-left" href="#"><</a>
 						<div class="upcontent"></div>
-						<a class="up-right" href="">></a>
+						<a class="up-right" href="#">></a>
 					</div>
 					
 					<div class="img-down">
 						<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考
 						</div>
 						<div class="img-down_right">查看大圖<img src="./zoomIn.png" alt=""></div>
-					</div>
-			<!-- 	</a>	 -->		
+					</div> -->
 			</div>
-			<div class="down">
+			<!-- <div class="down">
 					<a class="down-left"> < </a>
 						<ul>
-							<li><img class="select" src="http://fakeimg.pl/250x100/"></li>
-							<li><img src="http://fakeimg.pl/350x200/"></li>
-							<li><img class="" src="http://fakeimg.pl/250x100/"></li>
-							<li><img class="" src="http://fakeimg.pl/250x100/"></li>
-							<li><img src="http://fakeimg.pl/350x200/"></li>
-							<li><img class="" src="http://fakeimg.pl/250x100/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/250x250/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/350x200/"></li>
+							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
 						</ul>
 					<a class="down-right"> > </a>
-			</div>
+			</div> -->
 			<!-- 制定HTML結構 結束 -->
 		</div>
 	</div>
 </div>
 
 
+<script>
 
+
+
+</script>
 
 
 <script>
-// 	$('.carousel').carousel({
-//     // 輸入圖片資料來源
-//     data: [
-//         './imgs/hotes-1.jpg',
-//         './imgs/img001.jpg',
-//         'http://fakeimg.pl/350x200/?text=Hello',
-//         './imgs/img002.jpg',
-//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
-//         './imgs/img003.jpg',
-//         './imgs/img004.jpg',
-//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
-//         './imgs/img005.jpg',
-//         'http://fakeimg.pl/350x200/?text=Hello',
-//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
-//         'http://fakeimg.pl/350x200/?text=Hello',
-//         './imgs/img006.jpg',
-//         'http://fakeimg.pl/350x200/?text=World&font=lobster',
-//         'http://fakeimg.pl/350x200/?text=Hello',
-//     ],
-//     // heightRate:0.5625,//通過比例值計算高度
-//     pageSize:6, //縮略圖個數
-//     // 點擊看大圖時執行 callback
-//     onClickBigImg: function($bigimgBtn){
-//         console.log($bigimgBtn)
-//     },//callBack jquery選取物件
-//     // 點擊下一張圖時執行 callback
-//     onClickNext: function($nextBtn){
-//         console.log($nextBtn)
-//     },
-//     // 點擊上一張圖時執行 callback
-//     onClickPrev: function($prevBtn){
-//         console.log($prevBtn)
-//     },
-//     // 點擊下一組圖時執行 callback!!!
-//     onClickNextRound: function($nextroundBtn){
-//         console.log($nextroundBtn)
-//     },
-//     // 點擊上一組圖時執行 callback!!!
-//     onClickPrevRound: function($lastroundBtn){
-//         console.log($lastroundBtn)
-//     }
-// });
+	$('.carousel').carousel({
+    // // 輸入圖片資料來源
+    data: [
+        './imgs/hotes-2.jpg',//this.option.data[0] 以此類推
+        './imgs/img001.jpg',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        './imgs/img002.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        './imgs/img003.jpg',
+        './imgs/img004.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        './imgs/img005.jpg',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        './imgs/img006.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        'http://fakeimg.pl/350x200/?text=Hello',
+    ],
+
+    // // heightRate:0.5625,//通過比例值計算高度
+   	pageSize: 6 , //縮略圖個數
+    // // 點擊看大圖時執行 callback
+    // onClickBigImg: function($bigimgBtn){
+    //     console.log($bigimgBtn)
+    // },//callBack jquery選取物件
+    // // 點擊下一張圖時執行 callback
+    // onClickNext: function($nextBtn){
+    //     console.log($nextBtn)
+    // },
+    // // 點擊上一張圖時執行 callback
+    // onClickPrev: function($prevBtn){
+    //     console.log($prevBtn)
+    // },
+    // // 點擊下一組圖時執行 callback!!!
+    // onClickNextRound: function($nextroundBtn){
+    //     console.log($nextroundBtn)
+    // },
+    // // 點擊上一組圖時執行 callback!!!
+    // onClickPrevRound: function($lastroundBtn){
+    //     console.log($lastroundBtn)
+    // }
+});
 
 </script>
 
