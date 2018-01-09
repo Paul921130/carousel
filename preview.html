@@ -17,8 +17,7 @@
 		<div class="col-lg-12 col-md-12 col-xs-12">
 			<!-- 制定HTML結構 開始  -->
 			<div class="carousel">
-				<!-- <a href=""> -->
-					<img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">
+					<!-- <img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">
 					
 					<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">
 						<a class="up-left" href="#"><</a>
@@ -30,10 +29,9 @@
 						<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考
 						</div>
 						<div class="img-down_right">查看大圖<img src="./zoomIn.png" alt=""></div>
-					</div>
-			<!-- 	</a>	 -->		
+					</div> -->
 			</div>
-			<div class="down">
+			<!-- <div class="down">
 					<a class="down-left"> < </a>
 						<ul>
 							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
@@ -44,7 +42,7 @@
 							<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>
 						</ul>
 					<a class="down-right"> > </a>
-			</div>
+			</div> -->
 			<!-- 制定HTML結構 結束 -->
 		</div>
 	</div>
@@ -62,7 +60,7 @@
 	$('.carousel').carousel({
     // // 輸入圖片資料來源
     data: [
-        './imgs/hotes-1.jpg',
+        './imgs/hotes-2.jpg',//this.option.data[0] 以此類推
         './imgs/img001.jpg',
         'http://fakeimg.pl/350x200/?text=Hello',
         './imgs/img002.jpg',
@@ -78,7 +76,7 @@
         'http://fakeimg.pl/350x200/?text=World&font=lobster',
         'http://fakeimg.pl/350x200/?text=Hello',
     ],
-    
+
     // // heightRate:0.5625,//通過比例值計算高度
    	pageSize: 6 , //縮略圖個數
     // // 點擊看大圖時執行 callback
