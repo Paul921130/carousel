@@ -13,33 +13,36 @@
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
 		 pageSize:6,
-		// data:[
-		// 	'./imgs/hotes-1.jpg',
-	 //        './imgs/img001.jpg',
-	 //        'http://fakeimg.pl/350x200/?text=Hello',
-	 //        './imgs/img002.jpg',
-	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	 //        './imgs/img003.jpg',
-	 //        './imgs/img004.jpg',
-	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	 //        './imgs/img005.jpg',
-	 //        'http://fakeimg.pl/350x200/?text=Hello',
-	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	 //        'http://fakeimg.pl/350x200/?text=Hello',
-	 //        './imgs/img006.jpg',
-	 //        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	 //        'http://fakeimg.pl/350x200/?text=Hello',
-		// ],
+		 data:[
+			'./imgs/hotes-1.jpg',
+	        './imgs/img001.jpg',
+	        'http://fakeimg.pl/350x200/?text=Hello',
+	        './imgs/img002.jpg',
+	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	        './imgs/img003.jpg',
+	        './imgs/img004.jpg',
+	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	        './imgs/img005.jpg',
+	        'http://fakeimg.pl/350x200/?text=Hello',
+	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	        'http://fakeimg.pl/350x200/?text=Hello',
+	        './imgs/img006.jpg',
+	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+	        'http://fakeimg.pl/350x200/?text=Hello',
+		],
      }
 	
 //這裡有clearTimer()
 	Module.prototype.init = function () {
+		var a = Module.DEFAULTS.data[0];
+		
+		console.log(a);
 		$(".smallPic").click(function(){
-    	$(".smallPic").removeClass("select");
-        $(this).addClass( "select" );
-    	
-
-    });
+			var smallPicSrc =this.src;//這裡的this指向觸發click事件的物件
+    		$(".smallPic").removeClass("select");
+        	$(this).addClass( "select" );
+        	$(".mainPic").attr("src",smallPicSrc); 
+    	});
 	};
 	
 

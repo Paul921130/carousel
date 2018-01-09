@@ -52,34 +52,33 @@
 
 
 <script>
-$(".smallPic").click(function(){
-	        var a =this.src;
-	        console.log(a);                 
-            $(".mainPic").attr("src",a);      
-});//點擊換圖!!
-  </script>
+
+
+
+</script>
 
 
 <script>
 	$('.carousel').carousel({
     // // 輸入圖片資料來源
-    // data: [
-    //     './imgs/hotes-1.jpg',
-    //     './imgs/img001.jpg',
-    //     'http://fakeimg.pl/350x200/?text=Hello',
-    //     './imgs/img002.jpg',
-    //     'http://fakeimg.pl/350x200/?text=World&font=lobster',
-    //     './imgs/img003.jpg',
-    //     './imgs/img004.jpg',
-    //     'http://fakeimg.pl/350x200/?text=World&font=lobster',
-    //     './imgs/img005.jpg',
-    //     'http://fakeimg.pl/350x200/?text=Hello',
-    //     'http://fakeimg.pl/350x200/?text=World&font=lobster',
-    //     'http://fakeimg.pl/350x200/?text=Hello',
-    //     './imgs/img006.jpg',
-    //     'http://fakeimg.pl/350x200/?text=World&font=lobster',
-    //     'http://fakeimg.pl/350x200/?text=Hello',
-    // ],
+    data: [
+        './imgs/hotes-1.jpg',
+        './imgs/img001.jpg',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        './imgs/img002.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        './imgs/img003.jpg',
+        './imgs/img004.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        './imgs/img005.jpg',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        'http://fakeimg.pl/350x200/?text=Hello',
+        './imgs/img006.jpg',
+        'http://fakeimg.pl/350x200/?text=World&font=lobster',
+        'http://fakeimg.pl/350x200/?text=Hello',
+    ],
+    
     // // heightRate:0.5625,//通過比例值計算高度
    	pageSize: 6 , //縮略圖個數
     // // 點擊看大圖時執行 callback
