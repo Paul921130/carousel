@@ -22,16 +22,17 @@
 					);
 		this.$Html2=$('<div class="down">'
 						+'<a class="down-left"> < </a>'
-						+'<ul>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/250x250/"></li>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/350x200/"></li>'
-						+'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
+						+'<ul class="smallPic_ul">'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/250x250/"></li>'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x200/"></li>'
+						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
 						+'</ul>'
 						+'<a class="down-right"> > </a>'
 						+'</div>')
+		this.$smallPic= $('<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>')
 
 	};
 	// 下面是DEFAULTS物件 
@@ -61,6 +62,7 @@
 		var a = this.option.pageSize;
 		console.log(a);
 		this.creatHtml();
+		this.creatSmallPic();
 		$(".smallPic").click(function(){
 			var smallPicSrc =this.src;//這裡的this指向觸發click事件的物件
     		$(".smallPic").removeClass("select");
@@ -69,12 +71,7 @@
     	});
 
     	//以下是測試區
-    	for(var i = 0 ; i < (this.option.pageSize - 1); i++){
-    		console.log(Module.DEFAULTS.data[i]);
-    	}//這樣可以抓出data圖片的路徑
-
-    	var b = Module.DEFAULTS.data[1];
-    	console.log(b);
+    	
 	};
 
 //這個function創造Html	
@@ -82,7 +79,18 @@
 		this.$ele.append(this.$Html);
 		$('.col-lg-12').append(this.$Html2);
 	}
-	
+	Module.prototype.creatSmallPic = function (){
+		// for(var i = 0 ; i < (this.option.pageSize - 1); i++){
+		// 	$('.smallPic_ul').append(this.$smallPic);
+		// }
+		for(var i = 0 ; i < (this.option.pageSize - 1); i++){
+			$('.smallPic_ul').append(this.$smallPic);
+    		console.log(Module.DEFAULTS.data[i]);
+    	}//這樣可以抓出data圖片的路徑
+
+    	var b = Module.DEFAULTS.data[1];
+    	console.log(b);
+	}	
 
 
 	$.fn[ModuleName] = function ( method, options, options2 ) {
