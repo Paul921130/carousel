@@ -55,7 +55,7 @@
 		],
      }
 	
-//這裡有clearTimer()
+
 	Module.prototype.init = function () {
 		var a = this.option.pageSize;
 		console.log(a);
@@ -79,7 +79,7 @@
 	
 	Module.prototype.creatSmallPic = function (){
 		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
-			for(var i = 12; i < (this.option.pageSize + 10); i++){
+			for(var i = 10; i < (this.option.pageSize + 9); i++){
 				var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
 				$('.smallPic_ul').append(smallPic);
 				$('.smallPic').attr(Module.DEFAULTS.data[i] )
@@ -88,13 +88,10 @@
 		}else{
 			alert('請將pageSize設定於1到6之間')
 		}
-
-
-
 		//下面是測試
 	    var b = Module.DEFAULTS.data[1];
 	    console.log(b);
-	}	
+	}
 
 
 	$.fn[ModuleName] = function ( method, options, options2 ) {
