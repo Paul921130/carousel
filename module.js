@@ -38,21 +38,21 @@
 	Module.DEFAULTS = {
 		 pageSize:6,
 		 data:[
-			'./imgs/hotes-1.jpg',
-	        './imgs/img001.jpg',
-	        'http://fakeimg.pl/350x200/?text=Hello',
-	        './imgs/img002.jpg',
-	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	        './imgs/img003.jpg',
-	        './imgs/img004.jpg',
-	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	        './imgs/img005.jpg',
-	        'http://fakeimg.pl/350x200/?text=Hello',
-	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	        'http://fakeimg.pl/350x200/?text=Hello',
-	        './imgs/img006.jpg',
-	        'http://fakeimg.pl/350x200/?text=World&font=lobster',
-	        'http://fakeimg.pl/350x200/?text=Hello',
+			'http://fakeimg.pl/350x300/',
+	        'http://fakeimg.pl/350x300/',
+	        'http://fakeimg.pl/250x250/',
+	        'http://fakeimg.pl/350x300/',
+	        'http://fakeimg.pl/350x200/',
+	        'http://fakeimg.pl/350x300/',
+	        'http://fakeimg.pl/350x300/',
+	        'http://fakeimg.pl/400x300/',
+	        'http://fakeimg.pl/250x300/',
+	        'http://fakeimg.pl/350x400/',
+	        'http://fakeimg.pl/350x350/',
+	        'http://fakeimg.pl/350x200/',
+	        'http://fakeimg.pl/350x400/',
+	        'http://fakeimg.pl/400x300/',
+	        'http://fakeimg.pl/350x300/',
 		],
      }
 	
@@ -67,6 +67,14 @@
         	$(this).addClass( "select" );
         	$(".mainPic").attr("src",smallPicSrc); 
     	});
+
+    	//以下是測試區
+    	for(var i = 0 ; i < (this.option.pageSize - 1); i++){
+    		console.log(Module.DEFAULTS.data[i]);
+    	}//這樣可以抓出data圖片的路徑
+
+    	var b = Module.DEFAULTS.data[1];
+    	console.log(b);
 	};
 
 //這個function創造Html	
