@@ -37,21 +37,21 @@
 	Module.DEFAULTS = {
 		 pageSize:6,
 		 data:[
-			'http://fakeimg.pl/350x300/',
-	        'http://fakeimg.pl/350x300/',
-	        'http://fakeimg.pl/250x250/',
-	        'http://fakeimg.pl/350x300/',
-	        'http://fakeimg.pl/350x200/',
-	        'http://fakeimg.pl/350x300/',
-	        'http://fakeimg.pl/350x300/',
-	        'http://fakeimg.pl/400x300/',
-	        'http://fakeimg.pl/250x300/',
-	        'http://fakeimg.pl/350x400/',
-	        'http://fakeimg.pl/350x350/',
-	        'http://fakeimg.pl/350x200/',
-	        'http://fakeimg.pl/350x400/',
-	        'http://fakeimg.pl/400x300/',
-	        'http://fakeimg.pl/350x300/',
+			'http://fakeimg.pl/350x300/?text=1',
+	        'http://fakeimg.pl/350x300/?text=2',
+	        'http://fakeimg.pl/250x250/?text=3',
+	        'http://fakeimg.pl/350x300/?text=4',
+	        'http://fakeimg.pl/350x200/?text=5',
+	        'http://fakeimg.pl/350x300/?text=6',
+	        'http://fakeimg.pl/350x300/?text=7',
+	        'http://fakeimg.pl/400x300/?text=8',
+	        'http://fakeimg.pl/250x300/?text=9',
+	        'http://fakeimg.pl/350x400/?text=10',
+	        'http://fakeimg.pl/350x350/?text=11',
+	        'http://fakeimg.pl/350x200/?text=12',
+	        'http://fakeimg.pl/350x400/?text=13',
+	        'http://fakeimg.pl/400x300/?text=14',
+	        'http://fakeimg.pl/350x300/?text=15',
 		],
      }
 	
@@ -79,7 +79,7 @@
 	
 	Module.prototype.creatSmallPic = function (){
 		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
-			for(var i = 0 ; i < (this.option.pageSize); i++){
+			for(var i = 2 ; i < (this.option.pageSize + 2); i++){
 				var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
 				$('.smallPic_ul').append(smallPic);
 				$('.smallPic').attr(Module.DEFAULTS.data[i] )
@@ -88,6 +88,10 @@
 		}else{
 			alert('請將pageSize設定於1到6之間')
 		}
+
+
+
+		//下面是測試
 	    var b = Module.DEFAULTS.data[1];
 	    console.log(b);
 	}	
