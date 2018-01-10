@@ -32,8 +32,6 @@
 						+'</ul>'
 						+'<a class="down-right"> > </a>'
 						+'</div>')
-		this.$smallPic= $('<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>')
-
 	};
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
@@ -79,14 +77,13 @@
 		this.$ele.append(this.$Html);
 		$('.col-lg-12').append(this.$Html2);
 	}
-	Module.prototype.creatSmallPic = function (){
-		// for(var i = 0 ; i < (this.option.pageSize - 1); i++){
-		// 	$('.smallPic_ul').append(this.$smallPic);
-		// }
-		for(var i = 0 ; i < (this.option.pageSize - 1); i++){
-			$('.smallPic_ul').append(this.$smallPic);
-    		console.log(Module.DEFAULTS.data[i]);
-    	}//這樣可以抓出data圖片的路徑
+	Module.prototype.creatSmallPic = function (){		
+		for(var i = 0 ; i < (this.option.pageSize); i++){
+			var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
+			$('.smallPic_ul').append(smallPic);
+			$('.smallPic').attr(Module.DEFAULTS.data[i] )
+    		console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
+    	}//根據pageSize抓出小圖個數
 
     	var b = Module.DEFAULTS.data[1];
     	console.log(b);
