@@ -79,7 +79,7 @@
 	
 	Module.prototype.creatSmallPic = function (){
 		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
-			for(var i = 2 ; i < (this.option.pageSize + 2); i++){
+			for(var i = 12; i < (this.option.pageSize + 10); i++){
 				var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
 				$('.smallPic_ul').append(smallPic);
 				$('.smallPic').attr(Module.DEFAULTS.data[i] )
