@@ -77,16 +77,19 @@
 		this.$ele.append(this.$Html);
 		$('.col-lg-12').append(this.$Html2);
 	}
-	Module.prototype.creatSmallPic = function (){		
-		for(var i = 0 ; i < (this.option.pageSize); i++){
-			var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
-			$('.smallPic_ul').append(smallPic);
-			$('.smallPic').attr(Module.DEFAULTS.data[i] )
-    		console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
-    	}//根據pageSize抓出小圖個數
-
-    	var b = Module.DEFAULTS.data[1];
-    	console.log(b);
+	Module.prototype.creatSmallPic = function (){
+		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
+			for(var i = 0 ; i < (this.option.pageSize); i++){
+				var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
+				$('.smallPic_ul').append(smallPic);
+				$('.smallPic').attr(Module.DEFAULTS.data[i] )
+	    		console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
+	    	}//根據pageSize抓出小圖個數
+		}else{
+			console.log('請將pageSize設定於1到6之間')
+		}
+	    var b = Module.DEFAULTS.data[1];
+	    console.log(b);
 	}	
 
 
