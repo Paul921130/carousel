@@ -68,15 +68,15 @@
         	$(".mainPic").attr("src",smallPicSrc); 
     	});
 
-    	//以下是測試區
     	
 	};
 
-//這個function創造Html	
+	
 	Module.prototype.creatHtml = function () {
 		this.$ele.append(this.$Html);
 		$('.col-lg-12').append(this.$Html2);
-	}
+	}//這個function創造Html
+	
 	Module.prototype.creatSmallPic = function (){
 		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
 			for(var i = 0 ; i < (this.option.pageSize); i++){
@@ -86,7 +86,7 @@
 	    		console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
 	    	}//根據pageSize抓出小圖個數
 		}else{
-			console.log('請將pageSize設定於1到6之間')
+			alert('請將pageSize設定於1到6之間')
 		}
 	    var b = Module.DEFAULTS.data[1];
 	    console.log(b);
