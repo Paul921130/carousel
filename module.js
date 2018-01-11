@@ -105,12 +105,16 @@
 	}
 //doing
 	Module.prototype.onClickNextRound = function (){
-		$('.down-right').click(function(){
-			var a=2;
-			for (var i=0;i<5;i++){
-				$('.smallPic').attr('src',Module.DEFAULTS.data[i+a])
-			}
-		});
+		var lastPic= this.option.pageSize-1;
+		console.log(lastPic);
+		var sss= $('.smallPic')[lastPic].src;//下列最後一個的src值
+		console.log(sss);
+		// $('.down-right').click(function(){
+		// 	var a=2;
+		// 	for (var i=0; i < 3;i++){
+		// 		$('.smallPic').attr('src',Module.DEFAULTS.data[i+a])
+		// 	}
+		// });
 	}
 //doing
 	Module.prototype.onClickPrevRound = function (){
