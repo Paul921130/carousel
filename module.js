@@ -109,6 +109,8 @@
 		console.log(lastPic);
 		var sss= $('.smallPic')[lastPic].src;//下列最後一個的src值
 		console.log(sss);
+		var s = typeof sss;
+		console.log(s);
 		// $('.down-right').click(function(){
 		// 	var a=2;
 		// 	for (var i=0; i < 3;i++){
