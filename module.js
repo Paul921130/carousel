@@ -26,7 +26,7 @@
 						+'</ul>'
 						+'<a class="down-right"> > </a>'
 						+'</div>')
-		this.$change = 6;
+		// this.$change = 6;
 	};
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
@@ -52,6 +52,8 @@
 	
 
 	Module.prototype.init = function () {
+		var dataNumber=Module.DEFAULTS.data.length;
+		console.log(dataNumber);
 		this.creatHtml();
 		this.creatSmallPic();
 		this.smallArrow();
@@ -67,7 +69,7 @@
 	Module.prototype.creatSmallPic = function (){
 
 			if( 0 < this.option.pageSize && this.option.pageSize <=6 ){
-				for(var i = 0  ; i < (this.option.pageSize); i++){
+				for(var i = 0; i < (this.option.pageSize); i++){
 						var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
 						$('.smallPic_ul').append(smallPic);
 						$('.smallPic').attr(Module.DEFAULTS.data[i] )
@@ -93,8 +95,8 @@
 			$(".down-right").click(function(){
 					$('.smallPic_ul').empty();
 					changePage += pageNumber;
-					for(var i = 0  ; i < ( pageNumber ); i++){
-					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i + changePage]+'"></li>';
+					for(var i = 0 + changePage  ; i < (pageNumber + changePage) && i < 15; i++ ){
+					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
 					$('.smallPic_ul').append(smallPic);
 					$(".smallPic").click(function(){
 						var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
@@ -102,16 +104,17 @@
 			        	$(this).addClass( "select" );
 			        	$(".mainPic").attr("src",smallPicSrc); 
 			    	});
-				}
+					}
+					console.log(i);
 			});
-
+	
 			$(".down-left").click(function(){
 						$('.smallPic_ul').empty();
+						if(){
 						changePage -= pageNumber;
-					for(var i = 0  ; i < ( pageNumber ); i++){
-						var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i + changePage]+'"></li>';
-						$('.smallPic_ul').append(smallPic);
-
+						for(var i = 0 + changePage  ; i < ( pageNumber + changePage )&&i >= 0; i++){
+						var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						$('.smallPic_ul').append(smallPic); 
 						$(".smallPic").click(function(){
 							var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
 				    		$(".smallPic").removeClass("select");
@@ -119,6 +122,8 @@
 				        	$(".mainPic").attr("src",smallPicSrc); 
 					    	});
 						}
+						console.log(i);
+					}
 			});		
 	}
 
