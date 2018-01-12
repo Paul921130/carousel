@@ -76,6 +76,8 @@
 		this.onClickPrevRound();
 		this.smallArrow();
 		this.getSelectPic();
+		var bbbbb=$('.smallPic:last');
+		console.log(bbbbb);
 	};
 
 	
@@ -106,6 +108,7 @@
 				}else{
 					alert('請將pageSize設定於1到6之間');
 				}
+			$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class
 	}
 	Module.prototype.getSelectPic = function (){
 		var smallPicId = $('.select').attr("id");
@@ -204,6 +207,7 @@
 					    	});
 						}
 				}
+				$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
 			});
 	
 			$(".down-left").click(function(){
@@ -230,7 +234,8 @@
 					    	});
 						}
 				}
-			});		
+				$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
+			});
 	}
 
 
