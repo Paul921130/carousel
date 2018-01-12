@@ -30,7 +30,12 @@
 		this.$prevBtn=$('.up-left');
 		this.$nextroundBtn=$('.down-right');
 		this.$lastroundBtn=$('.down-left');
-
+		// this.selectSmall=function(){
+		// 	var smallPicId = $('.select').attr("id");
+		// 	var smallPicIdNum= parseInt(smallPicId);
+		// 	var x=smallPicIdNum;
+		// 	console.log(x);
+		// }
 		// this.$change = 6;
 	};
 	// 下面是DEFAULTS物件 
@@ -57,20 +62,19 @@
 	
 
 	Module.prototype.init = function () {
-		// console.log(this.$lastroundBtn);
-		var dataNumber=Module.DEFAULTS.data.length;
-		console.log(dataNumber);
+		var dataLength=Module.DEFAULTS.data.length;
+		console.log(dataLength);
 		var smallPicSrc=Module.DEFAULTS.data;
 		console.log(smallPicSrc);
 		this.creatHtml();
 		this.creatSmallPic();
-		// this.smallArrow();
 		this.selectSmall();
 		this.linkBigPic();
 		this.onClickNext();
 		this.onClickPrev();
 		this.onClickNextRound();
 		this.onClickPrevRound();
+		this.getSelectPic();
 	};
 
 	
@@ -90,7 +94,7 @@
 	Module.prototype.creatSmallPic = function (){
 			if( 0 < this.option.pageSize && this.option.pageSize <=6 ){
 				for(var i = 0; i < (this.option.pageSize); i++){
-						var smallPic = '<li><img class="smallPic" id="small'+ (i+1) +'" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
 						$('.smallPic_ul').append(smallPic);
 						$('.smallPic').attr(Module.DEFAULTS.data[i] )
 						if(i % this.option.pageSize === 0){
@@ -102,7 +106,12 @@
 					alert('請將pageSize設定於1到6之間');
 				}
 	}
-
+	Module.prototype.getSelectPic = function (){
+		var smallPicId = $('.select').attr("id");
+		var smallPicIdNum= parseInt($('.select').attr("id"));
+		var x=smallPicIdNum;
+		console.log(x);
+	}
 	Module.prototype.selectSmall=function(){
 		$(".smallPic").click(function(){
 			var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
@@ -113,15 +122,38 @@
 	}
 
 	Module.prototype.onClickNext = function (){
+		var dataLength =Module.DEFAULTS.data.length;
+		var pageSize=this.option.pageSize;
 		$('.up-right').click(function(){
-			console.log('this is up right Btn!');
-
+				var smallPicId = $('.select').attr("id");
+				var smallPicIdNum= parseInt($('.select').attr("id"));
+				var x = smallPicIdNum+1;
+				$(".smallPic").removeClass("select");
+				var nowSmall=$('#'+ (x++) +'small');
+				nowSmall.addClass( "select" );
+				var nowSmallSrc=nowSmall.attr("src");
+				console.log(nowSmallSrc);
+				$(".mainPic").attr("src",nowSmallSrc);
+				console.log('this is up right Btn!');
 		});
-	}
 
+	}
 	Module.prototype.onClickPrev = function (){
+		var dataLength =Module.DEFAULTS.data.length;
+		var pageSize=this.option.pageSize;
+		var x=1;
 		$('.up-left').click(function(){
-			console.log('this is up left Btn!');
+			var smallPicId = $('.select').attr("id");
+			var smallPicIdNum= parseInt($('.select').attr("id"));
+			var x = smallPicIdNum-1;	
+			$(".smallPic").removeClass("select");
+			// var dataLength =Module.DEFAULTS.data.length;
+			var nowSmall=$('#'+(x--)+'small');
+			nowSmall.addClass( "select" );
+			var nowSmallSrc=nowSmall.attr("src");
+			console.log(nowSmallSrc);
+			$(".mainPic").attr("src",nowSmallSrc);
+			console.log('this is up right Btn!');
 		});
 	}
 //doing
