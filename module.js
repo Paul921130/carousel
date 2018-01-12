@@ -63,14 +63,13 @@
 
 	Module.prototype.init = function () {
 		var dataLength=Module.DEFAULTS.data.length;
-		console.log(dataLength);
+		console.log(dataLength);//所有圖片的總數
 		var smallPicSrc=Module.DEFAULTS.data;
-		console.log(smallPicSrc);
+		console.log(smallPicSrc);//現在抓到的圖片
 		this.creatHtml();
 		this.creatSmallPic();
 		this.selectSmall();
 		this.linkBigPic();
-		
 		this.onClickNext();
 		this.onClickPrev();
 		this.onClickNextRound();
@@ -160,8 +159,8 @@
 	}
 //doing
 	Module.prototype.onClickNextRound = function (){
-		var pageNumber = this.option.pageSize;
-		var changePage = 0;
+		// var pageNumber = this.option.pageSize;
+		// var changePage = 0;
 		$('.down-right').click(function(){
 			console.log('this is down right Btn!');
 			// // var a=2;
@@ -207,7 +206,7 @@
 			$(".down-left").click(function(){
 						$('.smallPic_ul').empty();
 						changePage -= pageNumber;
-						for(var i = 0 + changePage; i < ( pageNumber + changePage )&&i >= 0; i++){
+						for(var i = 0 + changePage; i < ( pageNumber + changePage ); i++){
 						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
 						$('.smallPic_ul').append(smallPic);
 						if(i % pageNumber === 0){
