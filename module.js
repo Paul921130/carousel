@@ -178,34 +178,39 @@
 
 	Module.prototype.smallArrow = function (){
 			var pageNumber = this.option.pageSize;
+			var dataLength = Module.DEFAULTS.data.length;
+			var lastPageNumber=dataLength % pageNumber;
 			var changePage = 0;
-		
+
 			$(".down-right").click(function(){
+				var smallPicIdNum= parseInt($('.select').attr("id"));
+				if(smallPicIdNum + lastPageNumber < 15){	
 					$('.smallPic_ul').empty();
 					changePage += pageNumber;
-					for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
-						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
-						$('.smallPic_ul').append(smallPic);
-						if(i % pageNumber === 0){
-							$('.smallPic').addClass( "select" );
+						for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
+							var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+							$('.smallPic_ul').append(smallPic);
+							if(i % pageNumber === 0){
+								$('.smallPic').addClass( "select" );
+							}
+							var selected = $( ".smallPic" ).hasClass( "select" );
+								if( selected === true){
+									var smallPicSrc = $('.select').attr("src");
+									$(".mainPic").attr("src",smallPicSrc);	
+							}
+							$(".smallPic").click(function(){
+								var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+					    		$(".smallPic").removeClass("select");
+					        	$(this).addClass( "select" );
+					        	$(".mainPic").attr("src",smallPicSrc); 
+					    	});
 						}
-						var selected = $( ".smallPic" ).hasClass( "select" );
-							if( selected === true){
-								var smallPicSrc = $('.select').attr("src");
-								$(".mainPic").attr("src",smallPicSrc);	
-						}
-						$(".smallPic").click(function(){
-							var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
-				    		$(".smallPic").removeClass("select");
-				        	$(this).addClass( "select" );
-				        	$(".mainPic").attr("src",smallPicSrc); 
-				    	});
-					}
-					console.log(i);
-					return i;
+				}
 			});
 	
 			$(".down-left").click(function(){
+				var smallPicIdNum= parseInt($('.select').attr("id"));
+				if(smallPicIdNum - pageNumber+1 > 0){
 						$('.smallPic_ul').empty();
 						changePage -= pageNumber;
 						for(var i = 0 + changePage; i < ( pageNumber + changePage ); i++){
@@ -226,7 +231,7 @@
 				        	$(".mainPic").attr("src",smallPicSrc); 
 					    	});
 						}
-						console.log(i);
+				}
 			});		
 	}
 
