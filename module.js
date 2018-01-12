@@ -159,14 +159,8 @@
 	}
 //doing
 	Module.prototype.onClickNextRound = function (){
-		// var pageNumber = this.option.pageSize;
-		// var changePage = 0;
 		$('.down-right').click(function(){
 			console.log('this is down right Btn!');
-			// // var a=2;
-			// // for (var i=0; i < 3;i++){
-			// // 	$('.smallPic').attr('src',Module.DEFAULTS.data[i+a])
-			// // }
 		});
 	}
 //doing
@@ -179,12 +173,16 @@
 	Module.prototype.smallArrow = function (){
 			var pageNumber = this.option.pageSize;
 			var dataLength = Module.DEFAULTS.data.length;
-			var lastPageNumber=dataLength % pageNumber;
+			var lastPageNumber= dataLength % pageNumber;
 			var changePage = 0;
-
 			$(".down-right").click(function(){
 				var smallPicIdNum= parseInt($('.select').attr("id"));
 				if(smallPicIdNum + lastPageNumber < 15){	
+					//pageSize:1時要用if(smallPicIdNum + 1< 15)
+					//pageSize:5時要用if(smallPicIdNum + lastPageNumber+5 < 15)
+					//pageSize:4時要用if(smallPicIdNum + lastPageNumber+1< 15)
+					//pageSize:3時要用if(smallPicIdNum + lastPageNumber+3 < 15)
+					//pageSize非3非5時要用if(smallPicIdNum + lastPageNumber < 15)
 					$('.smallPic_ul').empty();
 					changePage += pageNumber;
 						for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
@@ -210,7 +208,7 @@
 	
 			$(".down-left").click(function(){
 				var smallPicIdNum= parseInt($('.select').attr("id"));
-				if(smallPicIdNum - pageNumber+1 > 0){
+				if(smallPicIdNum +1 > pageNumber){
 						$('.smallPic_ul').empty();
 						changePage -= pageNumber;
 						for(var i = 0 + changePage; i < ( pageNumber + changePage ); i++){
