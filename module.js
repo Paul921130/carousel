@@ -179,6 +179,7 @@
 	Module.prototype.smallArrow = function (){
 			var pageNumber = this.option.pageSize;
 			var changePage = 0;
+		
 			$(".down-right").click(function(){
 					$('.smallPic_ul').empty();
 					changePage += pageNumber;
@@ -201,6 +202,7 @@
 				    	});
 					}
 					console.log(i);
+					return i;
 			});
 	
 			$(".down-left").click(function(){
