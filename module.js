@@ -11,9 +11,9 @@
 		this.option2 = options2;
 		this.$Html= $('<img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">'
 						+'<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">'
-						+'<a class="up-left" href="#"><</a>'
+						+'<a class="up-left" style="text-decoration:none;" href="#"><</a>'
 						+'<div class="upcontent"></div>'
-						+'<a class="up-right" href="#">></a>'
+						+'<a class="up-right" style="text-decoration:none;" href="#">></a>'
 						+'</div>'
 						+'<div class="img-down">'
 						+'<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考</div>'
