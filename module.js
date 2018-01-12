@@ -70,10 +70,12 @@
 		this.creatSmallPic();
 		this.selectSmall();
 		this.linkBigPic();
+		
 		this.onClickNext();
 		this.onClickPrev();
 		this.onClickNextRound();
 		this.onClickPrevRound();
+		this.smallArrow();
 		this.getSelectPic();
 	};
 
@@ -160,12 +162,6 @@
 	Module.prototype.onClickNextRound = function (){
 		var pageNumber = this.option.pageSize;
 		var changePage = 0;
-		// var lastPic= this.option.pageSize-1;
-		// console.log(lastPic);
-		// var sss= $('.smallPic')[lastPic].src;//下列最後一個的src值
-		// console.log(sss);
-		// var s = typeof sss;
-		// console.log(s);
 		$('.down-right').click(function(){
 			console.log('this is down right Btn!');
 			// // var a=2;
@@ -181,41 +177,57 @@
 		});
 	}
 
-	// Module.prototype.smallArrow = function (){
-	// 		var pageNumber = this.option.pageSize;
-	// 		var changePage = 0;
-	// 		$(".down-right").click(function(){
-	// 				$('.smallPic_ul').empty();
-	// 				changePage += pageNumber;
-	// 				for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
-	// 					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
-	// 					$('.smallPic_ul').append(smallPic);
-	// 					$(".smallPic").click(function(){
-	// 						var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
-	// 			    		$(".smallPic").removeClass("select");
-	// 			        	$(this).addClass( "select" );
-	// 			        	$(".mainPic").attr("src",smallPicSrc); 
-	// 			    	});
-	// 				}
-	// 				console.log(i);
-	// 		});
+	Module.prototype.smallArrow = function (){
+			var pageNumber = this.option.pageSize;
+			var changePage = 0;
+			$(".down-right").click(function(){
+					$('.smallPic_ul').empty();
+					changePage += pageNumber;
+					for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
+						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						$('.smallPic_ul').append(smallPic);
+						if(i % pageNumber === 0){
+							$('.smallPic').addClass( "select" );
+						}
+						var selected = $( ".smallPic" ).hasClass( "select" );
+							if( selected === true){
+								var smallPicSrc = $('.select').attr("src");
+								$(".mainPic").attr("src",smallPicSrc);	
+						}
+						$(".smallPic").click(function(){
+							var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+				    		$(".smallPic").removeClass("select");
+				        	$(this).addClass( "select" );
+				        	$(".mainPic").attr("src",smallPicSrc); 
+				    	});
+					}
+					console.log(i);
+			});
 	
-	// 		$(".down-left").click(function(){
-	// 					$('.smallPic_ul').empty();
-	// 					changePage -= pageNumber;
-	// 					for(var i = 0 + changePage; i < ( pageNumber + changePage )&&i >= 0; i++){
-	// 					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
-	// 					$('.smallPic_ul').append(smallPic); 
-	// 					$(".smallPic").click(function(){
-	// 						var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
-	// 			    		$(".smallPic").removeClass("select");
-	// 			        	$(this).addClass( "select" );
-	// 			        	$(".mainPic").attr("src",smallPicSrc); 
-	// 				    	});
-	// 					}
-	// 					console.log(i);
-	// 		});		
-	// }
+			$(".down-left").click(function(){
+						$('.smallPic_ul').empty();
+						changePage -= pageNumber;
+						for(var i = 0 + changePage; i < ( pageNumber + changePage )&&i >= 0; i++){
+						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						$('.smallPic_ul').append(smallPic);
+						if(i % pageNumber === 0){
+							$('.smallPic').addClass( "select" );
+						} 
+						var selected = $( ".smallPic" ).hasClass( "select" );
+							if( selected === true){
+								var smallPicSrc = $('.select').attr("src");
+								$(".mainPic").attr("src",smallPicSrc);	
+						}
+						$(".smallPic").click(function(){
+							var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+				    		$(".smallPic").removeClass("select");
+				        	$(this).addClass( "select" );
+				        	$(".mainPic").attr("src",smallPicSrc); 
+					    	});
+						}
+						console.log(i);
+			});		
+	}
 
 
 	$.fn[ModuleName] = function ( method, options, options2 ) {
