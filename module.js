@@ -20,18 +20,18 @@
 						+'<div class="img-down_right">查看大圖<img src="./zoomIn.png" alt=""></div>'
 						+'</div>'
 					);
-		this.$Html2=$('<div class="down">'
+		this.$Html2= $ ('<div class="down">'
 						+'<a class="down-left"> < </a>'
 						+'<ul class="smallPic_ul">'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/250x250/"></li>'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x200/"></li>'
-						// +'<li><img class="smallPic" src="http://fakeimg.pl/350x300/"></li>'
 						+'</ul>'
 						+'<a class="down-right"> > </a>'
-						+'</div>')
+						+'</div>');
+		this.$nextBtn=$('.up-right');
+		this.$prevBtn=$('.up-left');
+		this.$nextroundBtn=$('.down-right');
+		this.$lastroundBtn=$('.down-left');
+
+		// this.$change = 6;
 	};
 	// 下面是DEFAULTS物件 
 	Module.DEFAULTS = {
@@ -57,18 +57,20 @@
 	
 
 	Module.prototype.init = function () {
-		var a = this.option.pageSize;
-		console.log(a);
+		// console.log(this.$lastroundBtn);
+		var dataNumber=Module.DEFAULTS.data.length;
+		console.log(dataNumber);
+		var smallPicSrc=Module.DEFAULTS.data;
+		console.log(smallPicSrc);
 		this.creatHtml();
 		this.creatSmallPic();
-		$(".smallPic").click(function(){
-			var smallPicSrc =this.src;//這裡的this指向觸發click事件的物件
-    		$(".smallPic").removeClass("select");
-        	$(this).addClass( "select" );
-        	$(".mainPic").attr("src",smallPicSrc); 
-    	});
-
-    	
+		// this.smallArrow();
+		this.selectSmall();
+		this.linkBigPic();
+		this.onClickNext();
+		this.onClickPrev();
+		this.onClickNextRound();
+		this.onClickPrevRound();
 	};
 
 	
@@ -76,22 +78,112 @@
 		this.$ele.append(this.$Html);
 		$('.col-lg-12').append(this.$Html2);
 	}//這個function創造Html
-	
-	Module.prototype.creatSmallPic = function (){
-		if( 0 < this.option.pageSize && this.option.pageSize <=6 ){		
-			for(var i = 10; i < (this.option.pageSize + 9); i++){
-				var smallPic='<li><img class="smallPic" src="'+Module.DEFAULTS.data[i]+'"></li>';
-				$('.smallPic_ul').append(smallPic);
-				$('.smallPic').attr(Module.DEFAULTS.data[i] )
-	    		console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
-	    	}//根據pageSize抓出小圖個數
-		}else{
-			alert('請將pageSize設定於1到6之間')
+
+	Module.prototype.linkBigPic = function (){
+		var selected = $( ".smallPic" ).hasClass( "select" );
+		if( selected === true){
+			var smallPicSrc = $('.select').attr("src");
+			$(".mainPic").attr("src",smallPicSrc);	
 		}
-		//下面是測試
-	    var b = Module.DEFAULTS.data[1];
-	    console.log(b);
 	}
+
+	Module.prototype.creatSmallPic = function (){
+			if( 0 < this.option.pageSize && this.option.pageSize <=6 ){
+				for(var i = 0; i < (this.option.pageSize); i++){
+						var smallPic = '<li><img class="smallPic" id="small'+ (i+1) +'" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						$('.smallPic_ul').append(smallPic);
+						$('.smallPic').attr(Module.DEFAULTS.data[i] )
+						if(i % this.option.pageSize === 0){
+							$('.smallPic').addClass( "select" );
+						}
+			    		// console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
+			    	}//根據pageSize抓出小圖個數
+				}else{
+					alert('請將pageSize設定於1到6之間');
+				}
+	}
+
+	Module.prototype.selectSmall=function(){
+		$(".smallPic").click(function(){
+			var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+    		$(".smallPic").removeClass("select");
+        	$(this).addClass( "select" );
+        	$(".mainPic").attr("src",smallPicSrc); 
+    	});
+	}
+
+	Module.prototype.onClickNext = function (){
+		$('.up-right').click(function(){
+			console.log('this is up right Btn!');
+
+		});
+	}
+
+	Module.prototype.onClickPrev = function (){
+		$('.up-left').click(function(){
+			console.log('this is up left Btn!');
+		});
+	}
+//doing
+	Module.prototype.onClickNextRound = function (){
+		var pageNumber = this.option.pageSize;
+		var changePage = 0;
+		// var lastPic= this.option.pageSize-1;
+		// console.log(lastPic);
+		// var sss= $('.smallPic')[lastPic].src;//下列最後一個的src值
+		// console.log(sss);
+		// var s = typeof sss;
+		// console.log(s);
+		$('.down-right').click(function(){
+			console.log('this is down right Btn!');
+			// // var a=2;
+			// // for (var i=0; i < 3;i++){
+			// // 	$('.smallPic').attr('src',Module.DEFAULTS.data[i+a])
+			// // }
+		});
+	}
+//doing
+	Module.prototype.onClickPrevRound = function (){
+		$('.down-left').click(function(){
+			console.log('this is down left Btn!');
+		});
+	}
+
+	// Module.prototype.smallArrow = function (){
+	// 		var pageNumber = this.option.pageSize;
+	// 		var changePage = 0;
+	// 		$(".down-right").click(function(){
+	// 				$('.smallPic_ul').empty();
+	// 				changePage += pageNumber;
+	// 				for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
+	// 					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
+	// 					$('.smallPic_ul').append(smallPic);
+	// 					$(".smallPic").click(function(){
+	// 						var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+	// 			    		$(".smallPic").removeClass("select");
+	// 			        	$(this).addClass( "select" );
+	// 			        	$(".mainPic").attr("src",smallPicSrc); 
+	// 			    	});
+	// 				}
+	// 				console.log(i);
+	// 		});
+	
+	// 		$(".down-left").click(function(){
+	// 					$('.smallPic_ul').empty();
+	// 					changePage -= pageNumber;
+	// 					for(var i = 0 + changePage; i < ( pageNumber + changePage )&&i >= 0; i++){
+	// 					var smallPic = '<li><img class="smallPic" id="smallP" src="'+Module.DEFAULTS.data[i]+'"></li>';
+	// 					$('.smallPic_ul').append(smallPic); 
+	// 					$(".smallPic").click(function(){
+	// 						var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
+	// 			    		$(".smallPic").removeClass("select");
+	// 			        	$(this).addClass( "select" );
+	// 			        	$(".mainPic").attr("src",smallPicSrc); 
+	// 				    	});
+	// 					}
+	// 					console.log(i);
+	// 		});		
+	// }
 
 
 	$.fn[ModuleName] = function ( method, options, options2 ) {
