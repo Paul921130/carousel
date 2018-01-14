@@ -180,7 +180,8 @@
 			var changePage = 0;
 			$(".down-right").click(function(){
 				var smallPicIdNum= parseInt($('.select').attr("id"));
-				if(smallPicIdNum + lastPageNumber < 15){	
+				var lastIdNumber= parseInt($('.last').attr("id"));
+				if(lastIdNumber < 14){//	
 					//pageSize:1時要用if(smallPicIdNum + 1< 15)
 					//pageSize:5時要用if(smallPicIdNum + lastPageNumber+5 < 15)
 					//pageSize:4時要用if(smallPicIdNum + lastPageNumber+1< 15)
@@ -206,7 +207,7 @@
 					        	$(".mainPic").attr("src",smallPicSrc); 
 					    	});
 						}
-				}
+				}//測試中
 				$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
 			});
 	
