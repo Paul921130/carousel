@@ -129,6 +129,7 @@
 	Module.prototype.onClickNext = function (){
 		var dataLength =Module.DEFAULTS.data.length;
 		var pageSize=this.option.pageSize;
+		var ChangePage=0;	
 			$('.up-right').click(function(){
 				var lastIdNumber= parseInt($('.last').attr("id"));
 				var selectNumber = parseInt($('.select').attr("id"));
@@ -143,23 +144,24 @@
 						console.log(nowSmallSrc);
 						$(".mainPic").attr("src",nowSmallSrc);
 						console.log('this is up right Btn!');
-					}else if(selectNumber===lastIdNumber && selectNumber!==14){
-						var dataLength = Module.DEFAULTS.data.length;
-						var lastPageNumber= dataLength % pageSize;
-						var changePage = 0;
+					}
+					
+					if( selectNumber==lastIdNumber && selectNumber<14){
 						$('.smallPic_ul').empty();
-						changePage += pageSize;
-						for(var i = 0 + changePage; i < (pageSize + changePage) && i < 15; i++ ){
+						ChangePage += pageSize;
+						for(var i = 0 + ChangePage; i < (pageSize + ChangePage) && i < 15; i++ ){
 							var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
 							$('.smallPic_ul').append(smallPic);
 							if(i % pageSize === 0){
 								$('.smallPic').addClass( "select" );
 							}
 							var selected = $( ".smallPic" ).hasClass( "select" );
-								if( selected === true){
+							if( selected === true){
 									var smallPicSrc = $('.select').attr("src");
 									$(".mainPic").attr("src",smallPicSrc);	
 							}
+							
+							$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
 							$(".smallPic").click(function(){
 								var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
 					    		$(".smallPic").removeClass("select");
@@ -167,10 +169,8 @@
 					        	$(".mainPic").attr("src",smallPicSrc); 
 					    	});
 						}
-						
-					}//else if 結尾	
-					$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
-					$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class				
+						$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class	
+					}//else if 結尾	測試中						
 			});
 
 	}
@@ -239,8 +239,9 @@
 					    	});
 						}
 				}//測試中
-				$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
-				$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
+
+					$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
+					$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
 			});
 	
 			$(".down-left").click(function(){
