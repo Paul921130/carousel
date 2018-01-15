@@ -29,7 +29,7 @@
     $('.carousel').carousel({
         // 輸入圖片資料來源
         data: [
-            './imgs/img11.jpg',//this.option.data[0] 以此類推
+            './imgs/img11.jpg', //this.option.data[0] 以此類推
             'http://fakeimg.pl/350x300/?text=2',
             './imgs/img3.jpg',
             './imgs/img12.jpg',
@@ -47,25 +47,25 @@
         ],
         pageSize: 6, //縮略圖個數 this.option.pageSize
         // // 點擊看大圖時執行 callback
-        // onClickBigImg: function($bigimgBtn){
-        //     console.log($bigimgBtn)
-        // },//callBack jquery選取物件
-        // // 點擊下一張圖時執行 callback
-        // onClickNext: function($nextBtn){
-        //     console.log($nextBtn)
-        // },
+        onClickBigImg: function($bigimgBtn){
+            console.log($bigimgBtn)
+        },//callBack jquery選取物件
+        // 點擊下一張圖時執行 callback
+        onClickNext: function($nextBtn){
+            console.log($nextBtn)
+        },
         // // 點擊上一張圖時執行 callback
-        // onClickPrev: function($prevBtn){
-        //     console.log($prevBtn)
-        // },
-        // // 點擊下一組圖時執行 callback!!!
-        // onClickNextRound: function($nextroundBtn){
-        //     console.log($nextroundBtn)
-        // },
-        // // 點擊上一組圖時執行 callback!!!
-        // onClickPrevRound: function($lastroundBtn){
-        //     console.log($lastroundBtn)
-        // }
+        onClickPrev: function($prevBtn){
+            console.log($prevBtn)
+        },
+        // 點擊下一組圖時執行 callback!!!
+        onClickNextRound: function($nextroundBtn){
+            console.log($nextroundBtn)
+        },
+        // 點擊上一組圖時執行 callback!!!
+        onClickPrevRound: function($lastroundBtn){
+            console.log($lastroundBtn)
+        }
     });
     </script>
 </body>
