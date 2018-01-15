@@ -55,10 +55,8 @@
 
 
     Module.prototype.init = function() {
-        var dataLength = this.option.data.length;
-        console.log(dataLength); //所有圖片的總數
-        var smallPicSrc = this.option.data;
-        console.log(smallPicSrc); //現在抓到的圖片
+        var dataLength = this.option.data.length;//所有圖片的張數
+        var smallPicSrc = this.option.data;//option抓到的圖片
         this.creatHtml();
         this.creatSmallPic();
         this.selectSmall();
@@ -100,7 +98,7 @@
                 if (i % this.option.pageSize === 0) {
                     $('.smallPic').addClass("select");
                 }
-                // console.log(Module.DEFAULTS.data[i]);//這樣可以抓出data圖片的路徑
+                // console.log(this.option.data[i]);//這樣可以抓出data圖片的路徑
             } //根據pageSize抓出小圖個數
         } else {
             alert('請將pageSize設定於1到6之間');
@@ -113,8 +111,6 @@
     Module.prototype.getSelectPic = function() {
         var smallPicId = $('.select').attr("id");
         var smallPicIdNum = parseInt($('.select').attr("id"));
-        var x = smallPicIdNum;
-        console.log(x);
     }
 
 
@@ -142,9 +138,7 @@
                 var nowSmall = $('#' + (x++) + 'small');
                 nowSmall.addClass("select");
                 var nowSmallSrc = nowSmall.attr("src");
-                console.log(nowSmallSrc);
                 $(".mainPic").attr("src", nowSmallSrc);
-                console.log('this is up right Btn!');
             } else {
                 var smallPicId = $('.select').attr("id");
                 var smallPicIdNum = parseInt($('.first').attr("id"));
@@ -178,9 +172,7 @@
                 var nowSmall = $('#' + (x--) + 'small');
                 nowSmall.addClass("select");
                 var nowSmallSrc = nowSmall.attr("src");
-                console.log(nowSmallSrc);
                 $(".mainPic").attr("src", nowSmallSrc);
-                console.log('this is up right Btn!');
             } else {
                 var smallPicId = $('.select').attr("id");
                 var smallPicIdNum = parseInt($('.last').attr("id"));
