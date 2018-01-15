@@ -148,6 +148,7 @@
 						$(".smallPic").removeClass("select");
 						var nowSmall=$('#'+ (x++) +'small');
 						nowSmall.addClass( "select" );
+						var nowSmallSrc=nowSmall.attr("src");
 						$(".mainPic").attr("src",nowSmallSrc);
 					}					
 			});
@@ -202,7 +203,8 @@
 
 	Module.prototype.smallArrow = function (){
 			var pageNumber = this.option.pageSize;
-			var dataLength = Module.DEFAULTS.data.length;
+			var dataLength = this.option.data.length;
+			var optionData=this.option.data;
 			var lastPageNumber= dataLength % pageNumber;
 			var changePage = 0;
 			$(".down-right").click(function(){
@@ -212,7 +214,7 @@
 					$('.smallPic_ul').empty();
 					changePage += pageNumber;
 						for(var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++ ){
-							var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+							var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+optionData[i]+'"></li>';
 							$('.smallPic_ul').append(smallPic);
 							if(i % pageNumber === 0){
 								$('.smallPic').addClass( "select" );
@@ -240,7 +242,7 @@
 						$('.smallPic_ul').empty();
 						changePage -= pageNumber;
 						for(var i = 0 + changePage; i < ( pageNumber + changePage ); i++){
-						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+optionData[i]+'"></li>';
 						$('.smallPic_ul').append(smallPic);
 						if(i % pageNumber === 0){
 							$('.smallPic').addClass( "select" );
