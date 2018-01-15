@@ -55,9 +55,9 @@
 	
 
 	Module.prototype.init = function () {
-		var dataLength=Module.DEFAULTS.data.length;
+		var dataLength=this.option.data.length;
 		console.log(dataLength);//所有圖片的總數
-		var smallPicSrc=Module.DEFAULTS.data;
+		var smallPicSrc=this.option.data;
 		console.log(smallPicSrc);//現在抓到的圖片
 		this.creatHtml();
 		this.creatSmallPic();
@@ -90,9 +90,9 @@
 	Module.prototype.creatSmallPic = function (){
 			if( 0 < this.option.pageSize && this.option.pageSize <=6 ){
 				for(var i = 0; i < (this.option.pageSize); i++){
-						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
+						var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+this.option.data[i]+'"></li>';
 						$('.smallPic_ul').append(smallPic);
-						$('.smallPic').attr(Module.DEFAULTS.data[i] )
+						$('.smallPic').attr(this.option.data[i] )
 						if(i % this.option.pageSize === 0){
 							$('.smallPic').addClass( "select" );
 						}
@@ -125,7 +125,7 @@
 
 
 	Module.prototype.onClickNext = function (){
-		var dataLength =Module.DEFAULTS.data.length;
+		var dataLength =this.option.data.length;
 		var pageSize=this.option.pageSize;	
 			$('.up-right').click(function(){
 				var lastIdNumber= parseInt($('.last').attr("id"));
@@ -133,7 +133,7 @@
 					if(selectNumber!==lastIdNumber){
 						var smallPicId = $('.select').attr("id");
 						var smallPicIdNum= parseInt($('.select').attr("id"));
-						var x = smallPicIdNum+1;
+						var x = smallPicIdNum + 1;
 						$(".smallPic").removeClass("select");
 						var nowSmall=$('#'+ (x++) +'small');
 						nowSmall.addClass( "select" );
@@ -148,7 +148,6 @@
 						$(".smallPic").removeClass("select");
 						var nowSmall=$('#'+ (x++) +'small');
 						nowSmall.addClass( "select" );
-						var nowSmallSrc=nowSmall.attr("src");
 						$(".mainPic").attr("src",nowSmallSrc);
 					}					
 			});
@@ -157,7 +156,7 @@
 
 
 	Module.prototype.onClickPrev = function (){
-		var dataLength =Module.DEFAULTS.data.length;
+		var dataLength =this.option.data.length;
 		var pageSize=this.option.pageSize;
 		var x=1;
 			$('.up-left').click(function(){
