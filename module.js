@@ -117,7 +117,7 @@
 
 
     Module.prototype.selectSmall = function() {
-        $(".smallPic").click(function() {
+        $(".smallPic").on( "click",function() {
             var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
             $(".smallPic").removeClass("select");
             $(this).addClass("select");
@@ -130,7 +130,7 @@
         var dataLength = this.option.data.length;
         var pageSize = this.option.pageSize;
         var onClickNextCallBack = this.option.onClickNext;
-        $('.up-right').click(function($nextBtn) {
+        $('.up-right').on( "click" , function($nextBtn) {
             var lastIdNumber = parseInt($('.last').attr("id"));
             var selectNumber = parseInt($('.select').attr("id"));
             if (selectNumber !== lastIdNumber) {
@@ -163,7 +163,7 @@
         var pageSize = this.option.pageSize;
         var onClickPrevCallBack = this.option.onClickPrev;
         var x = 1;
-        $('.up-left').click(function($prevBtn) {
+        $('.up-left').on( "click", function($prevBtn) {
             var firstIdNumber = parseInt($('.first').attr("id"));
             var selectNumber = parseInt($('.select').attr("id"));
 
@@ -209,7 +209,7 @@
         var onClickNextRoundCallBack = this.option.onClickNextRound;
         var onClickPrevRoundCallBack = this.option.onClickPrevRound;
         var changePage = 0;
-        $(".down-right").click(function($nextroundBtn) {
+        $(".down-right").on( "click", function($nextroundBtn) {
             var smallPicIdNum = parseInt($('.select').attr("id"));
             var lastIdNumber = parseInt($('.last').attr("id"));
             if (lastIdNumber < 14) {
@@ -226,7 +226,7 @@
                         var smallPicSrc = $('.select').attr("src");
                         $(".mainPic").attr("src", smallPicSrc);
                     }
-                    $(".smallPic").click(function() {
+                    $(".smallPic").on( "click", function() {
                         var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
                         $(".smallPic").removeClass("select");
                         $(this).addClass("select");
@@ -239,7 +239,7 @@
             onClickNextRoundCallBack($nextroundBtn)
         });
 
-        $(".down-left").click(function($lastroundBtn) {
+        $(".down-left").on( "click", function($lastroundBtn) {
             var smallPicIdNum = parseInt($('.select').attr("id"));
             if (smallPicIdNum + 1 > pageNumber) {
                 $('.smallPic_ul').empty();
@@ -255,7 +255,7 @@
                         var smallPicSrc = $('.select').attr("src");
                         $(".mainPic").attr("src", smallPicSrc);
                     }
-                    $(".smallPic").click(function() {
+                    $(".smallPic").on( "click", function() {
                         var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
                         $(".smallPic").removeClass("select");
                         $(this).addClass("select");

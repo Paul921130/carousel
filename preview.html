@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="../core/core.css" rel="stylesheet">
     <link href="css.css" rel="stylesheet">
-    <title>carousel</title>
+    <title>carousel(單獨模組樣式檢視)</title>
     <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
     <script src="./module.js"></script>
 </head>
@@ -24,14 +24,12 @@
         </div>
     </div>
     <script>
-    </script>
-    <script>
     $('.carousel').carousel({
         // 輸入圖片資料來源
         data: [
             './imgs/img11.jpg', //this.option.data[0] 以此類推
             'http://fakeimg.pl/350x300/?text=2',
-            './imgs/img3.jpg',
+            'http://fakeimg.pl/450x500/?text=World&font=lobster',
             './imgs/img12.jpg',
             'http://fakeimg.pl/350x200/?text=World&font=lobster',
             './imgs/img4.jpg',
@@ -45,7 +43,7 @@
             'http://fakeimg.pl/350x300/?text=World&font=lobster',
             'http://fakeimg.pl/350x400/?text=Hello',
         ],
-        pageSize: 6, //縮略圖個數 this.option.pageSize
+        pageSize: 5, //縮略圖個數 this.option.pageSize
         // // 點擊看大圖時執行 callback
         onClickBigImg: function($bigimgBtn){
             console.log($bigimgBtn)
