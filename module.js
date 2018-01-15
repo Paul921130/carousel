@@ -69,8 +69,6 @@
 		this.onClickNextRound();
 		this.onClickPrevRound();
 		this.getSelectPic();
-		var bbbbb=$('.smallPic:last');
-		console.log(bbbbb);
 	};
 
 	
@@ -128,8 +126,7 @@
 
 	Module.prototype.onClickNext = function (){
 		var dataLength =Module.DEFAULTS.data.length;
-		var pageSize=this.option.pageSize;
-		var ChangePage=0;	
+		var pageSize=this.option.pageSize;	
 			$('.up-right').click(function(){
 				var lastIdNumber= parseInt($('.last').attr("id"));
 				var selectNumber = parseInt($('.select').attr("id"));
@@ -144,33 +141,16 @@
 						console.log(nowSmallSrc);
 						$(".mainPic").attr("src",nowSmallSrc);
 						console.log('this is up right Btn!');
-					}
-					
-					if( selectNumber==lastIdNumber && selectNumber<14){
-						$('.smallPic_ul').empty();
-						ChangePage += pageSize;
-						for(var i = 0 + ChangePage; i < (pageSize + ChangePage) && i < 15; i++ ){
-							var smallPic = '<li><img class="smallPic" id="'+ (i) +'small" src="'+Module.DEFAULTS.data[i]+'"></li>';
-							$('.smallPic_ul').append(smallPic);
-							if(i % pageSize === 0){
-								$('.smallPic').addClass( "select" );
-							}
-							var selected = $( ".smallPic" ).hasClass( "select" );
-							if( selected === true){
-									var smallPicSrc = $('.select').attr("src");
-									$(".mainPic").attr("src",smallPicSrc);	
-							}
-							
-							$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
-							$(".smallPic").click(function(){
-								var smallPicSrc = this.src;//這裡的this指向觸發click事件的物件
-					    		$(".smallPic").removeClass("select");
-					        	$(this).addClass( "select" );
-					        	$(".mainPic").attr("src",smallPicSrc); 
-					    	});
-						}
-						$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class	
-					}//else if 結尾	測試中						
+					}else{
+						var smallPicId = $('.select').attr("id");
+						var smallPicIdNum= parseInt($('.first').attr("id"));
+						var x = smallPicIdNum;
+						$(".smallPic").removeClass("select");
+						var nowSmall=$('#'+ (x++) +'small');
+						nowSmall.addClass( "select" );
+						var nowSmallSrc=nowSmall.attr("src");
+						$(".mainPic").attr("src",nowSmallSrc);
+					}					
 			});
 
 	}
@@ -183,6 +163,7 @@
 			$('.up-left').click(function(){
 				var firstIdNumber= parseInt($('.first').attr("id"));
 				var selectNumber = parseInt($('.select').attr("id"));
+
 				if(selectNumber!==firstIdNumber){//抓零沒有用 要馬就抓first 所以還要有一個first的class
 					var smallPicId = $('.select').attr("id");
 					var smallPicIdNum= parseInt($('.select').attr("id"));
@@ -193,6 +174,17 @@
 					nowSmall.addClass( "select" );
 					var nowSmallSrc=nowSmall.attr("src");
 					console.log(nowSmallSrc);
+					$(".mainPic").attr("src",nowSmallSrc);
+					console.log('this is up right Btn!');
+				}else{
+					var smallPicId = $('.select').attr("id");
+					var smallPicIdNum= parseInt($('.last').attr("id"));
+					var x = smallPicIdNum;	
+					$(".smallPic").removeClass("select");
+					// var dataLength =Module.DEFAULTS.data.length;
+					var nowSmall=$('#'+(x--)+'small');
+					nowSmall.addClass( "select" );
+					var nowSmallSrc=nowSmall.attr("src");
 					$(".mainPic").attr("src",nowSmallSrc);
 					console.log('this is up right Btn!');
 				}
@@ -239,7 +231,6 @@
 					    	});
 						}
 				}//測試中
-
 					$('.smallPic:first').addClass('first');//在每列第一張圖片加上'first'的class
 					$('.smallPic:last').addClass('last');//在每列最後一張圖片加上'Last'的class		
 			});
