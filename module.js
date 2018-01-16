@@ -11,9 +11,9 @@
         this.option2 = options2;
         this.$Html = $('<img class="mainPic" src="http://fakeimg.pl/600x400/?text=Hello" alt="">' +
             '<div class="up" src="http://fakeimg.pl/350x200/?text=Hello" alt="">' +
-            '<a class="up-left" style="text-decoration:none;" href="#"><</a>' +
+            '<a class="up-left" style="text-decoration:none;"><</a>' +
             '<div class="upcontent"></div>' +
-            '<a class="up-right" style="text-decoration:none;" href="#">></a>' +
+            '<a class="up-right" style="text-decoration:none;">></a>' +
             '</div>' +
             '<div class="img-down">' +
             '<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考</div>' +
@@ -26,12 +26,8 @@
             '</ul>' +
             '<a class="down-right"> > </a>' +
             '</div>');
-        this.$nextBtn = $('.up-right');
-        this.$prevBtn = $('.up-left');
-        this.$nextroundBtn = $('.down-right');
-        this.$lastroundBtn = $('.down-left');
     };
-    // 下面是DEFAULTS物件 
+
     Module.DEFAULTS = {
         pageSize: 6,
         data: [
@@ -53,7 +49,6 @@
         ], //==this.option.data 要記得修改
 
     }
-
 
     Module.prototype.init = function() {
         var dataLength = this.option.data.length; //所有圖片的張數
@@ -78,9 +73,8 @@
 
     Module.prototype.creatHtml = function() {
         this.$ele.append(this.$Html);
-        $('.col-lg-12').append(this.$Html2);
+        $('.col-lg-10').append(this.$Html2);
     } //這個function創造Html
-
 
     Module.prototype.linkBigPic = function() {
         var selected = $(".smallPic").hasClass("select");
@@ -89,7 +83,6 @@
             $(".mainPic").attr("src", smallPicSrc);
         }
     }
-
 
     Module.prototype.creatSmallPic = function() {
         if (0 < this.option.pageSize && this.option.pageSize <= 6) {
@@ -168,8 +161,7 @@
             }
             onClickNextCallBack($nextBtn);
         });
-
-    }
+    } //大圖輪播版本(右箭頭)
 
     Module.prototype.onClickPrev = function() {
         var optionData = this.option.data;
@@ -214,7 +206,7 @@
             $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class     
             onClickPrevCallBack($prevBtn);
         });
-    }
+    } //大圖輪播版本(左箭頭)
 
     //     Module.prototype.onClickNext = function() {
     // 	var optionData = this.option.data;
@@ -224,7 +216,6 @@
     //     $('.up-right').on( "click" , function($nextBtn) {
     //         var lastIdNumber = parseInt($('.last').attr("class"));
     //         var selectNumber = parseInt($('.select').attr("class"));
-
     //         if (selectNumber !== lastIdNumber) {
     //             var x = selectNumber + 1;
     //             $(".smallPic").removeClass("select");
