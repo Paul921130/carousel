@@ -115,7 +115,7 @@ a:hover{
 
 	.down > ul > li > img{
 		width: 85px;
-		object-fit: cover;
+		object-fit:cover;
 		cursor: pointer;
 	}
 	.select{
@@ -126,7 +126,7 @@ a:hover{
  @media only screen and (max-width: 1280px) {
 	.up{
 		width: 100%;
-		display:fle x;
+		display:flex;
 		align-items:center;
 	}
 	.up a, .up .upcontent{
@@ -186,7 +186,7 @@ a:hover{
 	}
 
 	.down>ul{
-		display: flex;
+		display:flex;
 		margin-bottom: 0;
 		align-items:center;
 		justify-content:space-around;
