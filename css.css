@@ -1,6 +1,7 @@
 *{
 	margin:0;
 	padding: 0; 
+	box-sizing: border-box;
 }
 li{
 	list-style: none;
@@ -101,13 +102,11 @@ a:hover{
 		width: 85px;
 		background:#ccc;
 		margin:5px 2px;
-
 	}
 
 	.down > ul > li > img{
 		width: 85px;
 		object-fit: cover;
-
 	}
 	.select{
 		border: 3px solid red;

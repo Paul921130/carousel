@@ -284,7 +284,6 @@
         var lastPageNumber = dataLength % pageNumber;
         var onClickNextRoundCallBack = this.option.onClickNextRound;
         var onClickPrevRoundCallBack = this.option.onClickPrevRound;
-        // var changePage = 0;
         $(".down-right").on("click", function($nextroundBtn) {
             var firstIdNumber = parseInt($('.first').attr("class"));
             var smallPicIdNum = parseInt($('.select').attr("class"));
