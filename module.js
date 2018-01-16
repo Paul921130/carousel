@@ -105,7 +105,6 @@
     Module.prototype.getSelectPic = function() {
         var smallPicId = $('.select').attr("class");
         var smallPicIdNum = parseInt($('.select').attr("class"));
-        console.log(smallPicIdNum);
     }
 
 
