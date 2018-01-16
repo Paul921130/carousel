@@ -16,7 +16,7 @@
             '<a class="up-right" style="text-decoration:none;">></a>' +
             '</div>' +
             '<div class="img-down">' +
-            '<div class="img-down_left">※客房以實際入住房型為主,圖片僅供參考</div>' +
+            '<div class="img-down_left">※客房以實際入住房型為主,圖片僅提供參考</div>' +
             '<div class="img-down_right">查看大圖<img src="./zoomIn.png" alt=""></div>' +
             '</div>'
         );
@@ -73,7 +73,7 @@
 
     Module.prototype.creatHtml = function() {
         this.$ele.append(this.$Html);
-        $('.col-lg-10').append(this.$Html2);
+        $('.col-lg-12').append(this.$Html2);
     } //這個function創造Html
 
     Module.prototype.linkBigPic = function() {

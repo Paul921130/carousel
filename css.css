@@ -2,6 +2,8 @@
 	margin:0;
 	padding: 0; 
 	box-sizing: border-box;
+	-webkit-user-select: none;/*取消反白for Chrome*/
+	-moz-user-select: none;  /* 取消反白for Firefox */ 
 }
 li{
 	list-style: none;
@@ -11,7 +13,6 @@ a:hover{
 	cursor: pointer;
 }
 .carousel{
-	align-items:center;
 	margin:0 auto; 
 	margin-top: 10px;
 	width: 100%;
@@ -19,14 +20,20 @@ a:hover{
 	background-color: #cccccc;
 	position: relative;
 	overflow: hidden;
-	display:flex;
+/*	display:flex;*/
+	align-items:center;/*IE不吃*/
 }
 .carousel>img{
-	justify-content:center;
+	/*justify-content:center;*/
 	width: 100%;
 	object-fit: cover;
 	position: absolute;
 	z-index: 1;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	margin: auto
 }
  @media only screen and (max-width: 2100px) {
 
@@ -38,7 +45,7 @@ a:hover{
 	.up a, .up .upcontent{
 		z-index: 9;
 		float: left;
-		justify-content:center;
+		justify-content:center; 
 	}
 	.up .up-right{
 		float: right;
@@ -46,17 +53,16 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 280px;
+		height: 300px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
 	}
 	.up > a{
 		color: white;
-		padding: 15px 13px;
+		padding: 20px 9px;
 		background: rgba(0,0,0,.5);
 		font-weight: bolder;
-		transform: scaleY(1.5);
 	}
 	.img-down{
 		position: absolute;
@@ -64,11 +70,12 @@ a:hover{
 		right: 0;
 		left: 0;
 		color: white;
-		font-size: 19px;
+		font-size: 17px;
 		z-index: 99;
 	}
 	.img-down_left{
-		margin-left: 5px;
+		margin-left: 10px;
+		margin-top: 4px;
 		float: left;
 	}
 	.img-down_right{
@@ -80,8 +87,7 @@ a:hover{
 	}
 	.img-down_right img{
 		width: 24px;
-		margin-left: 6px;
-		margin-bottom:6px; 
+		margin:6px 3px 6px 6px; 
 	}
 	.down{
 		display: flex;
@@ -103,13 +109,12 @@ a:hover{
 		justify-content:space-around;
 	}
 	.down>ul>li{
-	/*	width: 85px;*/
 		background:#ccc;
 		margin:5px 2px;
 	}
 
 	.down > ul > li > img{
-		width: 70px;
+		width: 85px;
 		object-fit: cover;
 		cursor: pointer;
 	}
@@ -135,16 +140,15 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 240px;
+		height: 260px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
 	}
 	.up > a{
 		color: white;
-		padding: 15px 13px;
+		padding: 20px 9px;
 		font-weight: bolder;
-		transform: scaleY(1.5);
 	}
 	.img-down{
 		position: absolute;
@@ -152,12 +156,12 @@ a:hover{
 		right: 0;
 		left: 0;
 		color: white;
-		font-size: 15px;
+		font-size: 17px;
 		z-index: 99;
 	}
 	.img-down_left{
 		line-height: 34px;
-		margin-left: 5px;
+		margin-left: 10px;
 		float: left;
 	}
 	.img-down_right{
@@ -188,7 +192,6 @@ a:hover{
 		justify-content:space-around;
 	}
 	.down>ul>li{
-	/*	width: 60px;*/
 		background:#ccc;
 		margin:5px 2px;
 
@@ -197,7 +200,7 @@ a:hover{
 		border: 3px solid #ff615e;
 	}
 	.down > ul > li > img{
-		width: 55px;
+		width: 70px;
 		object-fit: cover;
 	}
  }
@@ -219,16 +222,15 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 200px;
+		height: 220px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
 	}
 	.up > a{
 		color: white;
-		padding: 15px 9px;
+		padding: 18px 8px;
 		font-weight: bolder;
-		transform: scaleY(1.2);
 	}
 	.img-down{
 		position: absolute;
@@ -236,11 +238,11 @@ a:hover{
 		right: 0;
 		left: 0;
 		color: white;
-		font-size: 14px;
+		font-size: 17px;
 		z-index: 99;
 	}
 	.img-down_left{
-		margin-left: 5px;
+		margin-left: 10px;
 		float: left;
 		margin-bottom: 10px;
 	}
