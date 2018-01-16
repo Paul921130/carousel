@@ -51,7 +51,7 @@
             './imgs/img10.jpg',
             'http://fakeimg.pl/350x300/?text=15',
         ], //==this.option.data 要記得修改
-   
+
     }
 
 
@@ -91,24 +91,6 @@
     }
 
 
-    // Module.prototype.creatSmallPic = function() {
-    //     if (0 < this.option.pageSize && this.option.pageSize <= 6) {
-    //         for (var i = 0; i < (this.option.pageSize); i++) {
-    //             var smallPic = '<li><img class="smallPic" id="' + (i) + 'small" src="' + this.option.data[i] + '"></li>';
-    //             $('.smallPic_ul').append(smallPic);
-    //             $('.smallPic').attr(this.option.data[i])
-    //             if (i % this.option.pageSize === 0) {
-    //                 $('.smallPic').addClass("select");
-    //             }
-    //             // console.log(this.option.data[i]);//這樣可以抓出data圖片的路徑
-    //         } //根據pageSize抓出小圖個數
-    //     } else {
-    //         alert('請將pageSize設定於1到6之間');
-    //     }
-    //     $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
-    //     $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class		
-    // }
-
     Module.prototype.creatSmallPic = function() {
         if (0 < this.option.pageSize && this.option.pageSize <= 6) {
             for (var i = 0; i < (this.option.pageSize); i++) {
@@ -125,23 +107,17 @@
         }
         $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
         $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class     
-    }//////
-
-
-    // Module.prototype.getSelectPic = function() {
-    //     var smallPicId = $('.select').attr("id");
-    //     var smallPicIdNum = parseInt($('.select').attr("id"));
-    // }
+    }
 
     Module.prototype.getSelectPic = function() {
         var smallPicId = $('.select').attr("class");
         var smallPicIdNum = parseInt($('.select').attr("class"));
         console.log(smallPicIdNum);
-    }///////
+    }
 
 
     Module.prototype.selectSmall = function() {
-        $(".smallPic").on( "click",function() {
+        $(".smallPic").on("click", function() {
             var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
             $(".smallPic").removeClass("select");
             $(this).addClass("select");
@@ -149,29 +125,118 @@
         });
     }
 
+    Module.prototype.onClickNext = function() {
+        var optionData = this.option.data;
+        var dataLength = this.option.data.length;
+        var pageSize = this.option.pageSize;
+        var onClickNextCallBack = this.option.onClickNext;
+        $('.up-right').on("click", function($nextBtn) {
+            var lastIdNumber = parseInt($('.last').attr("class"));
+            var selectNumber = parseInt($('.select').attr("class"));
+            var firstIdNumber = parseInt($('.first').attr("class"));
+            if (selectNumber !== lastIdNumber) {
+                var x = selectNumber + 1;
+                $(".smallPic").removeClass("select");
+                var nowSmall = $('.' + (x++) + 'small');
+                nowSmall.addClass("select");
+                var nowSmallSrc = nowSmall.attr("src");
+                $(".mainPic").attr("src", nowSmallSrc);
+            } else if (selectNumber == lastIdNumber && lastIdNumber < 14) {
+                $('.smallPic_ul').empty();
+                var changePage = firstIdNumber;
+                changePage += pageSize;
+                for (var i = 0 + changePage; i < (pageSize + changePage) && i < 15; i++) {
+                    var smallPic = '<li><img class="' + (i) + 'small smallPic" src="' + optionData[i] + '"></li>';
+                    $('.smallPic_ul').append(smallPic);
+                    if (i % pageSize === 0) {
+                        $('.smallPic').addClass("select");
+                    }
+                    var selected = $(".smallPic").hasClass("select");
+                    if (selected === true) {
+                        var smallPicSrc = $('.select').attr("src");
+                        $(".mainPic").attr("src", smallPicSrc);
+                    }
+                    $(".smallPic").on("click", function() {
+                        var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
+                        $(".smallPic").removeClass("select");
+                        $(this).addClass("select");
+                        $(".mainPic").attr("src", smallPicSrc);
+                    });
+                };
+                $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
+                $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class 
+            }
+            onClickNextCallBack($nextBtn);
+        });
 
-    // Module.prototype.onClickNext = function() {
+    }
+
+    Module.prototype.onClickPrev = function() {
+        var optionData = this.option.data;
+        var dataLength = this.option.data.length;
+        var pageSize = this.option.pageSize;
+        var onClickPrevCallBack = this.option.onClickPrev;
+        var x = 1;
+        $('.up-left').on("click", function($prevBtn) {
+            var firstIdNumber = parseInt($('.first').attr("class"));
+            var selectNumber = parseInt($('.select').attr("class"));
+            if (selectNumber !== firstIdNumber) { //抓零沒有用 要馬就抓first 所以還要有一個first的class
+                var x = selectNumber - 1;
+                $(".smallPic").removeClass("select");
+                var nowSmall = $('.' + (x--) + 'small');
+                nowSmall.addClass("select");
+                var nowSmallSrc = nowSmall.attr("src");
+                $(".mainPic").attr("src", nowSmallSrc);
+            } else if (selectNumber == firstIdNumber && firstIdNumber > 0) {
+                $('.smallPic_ul').empty();
+                var changePage = firstIdNumber;
+                changePage -= pageSize;
+                for (var i = 0 + changePage; i < (pageSize + changePage); i++) {
+                    var smallPic = '<li><img class="' + (i) + 'small smallPic" src="' + optionData[i] + '"></li>';
+                    $('.smallPic_ul').append(smallPic);
+                    if (i % pageSize === 0) {
+                        $('.smallPic').addClass("select");
+                    }
+                    var selected = $(".smallPic").hasClass("select");
+                    if (selected === true) {
+                        var smallPicSrc = $('.select').attr("src");
+                        $(".mainPic").attr("src", smallPicSrc);
+                    }
+                    $(".smallPic").on("click", function() {
+                        var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
+                        $(".smallPic").removeClass("select");
+                        $(this).addClass("select");
+                        $(".mainPic").attr("src", smallPicSrc);
+                    });
+                }
+            }
+            $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
+            $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class     
+            onClickPrevCallBack($prevBtn);
+        });
+    }
+
+    //     Module.prototype.onClickNext = function() {
+    // 	var optionData = this.option.data;
     //     var dataLength = this.option.data.length;
     //     var pageSize = this.option.pageSize;
     //     var onClickNextCallBack = this.option.onClickNext;
     //     $('.up-right').on( "click" , function($nextBtn) {
-    //         var lastIdNumber = parseInt($('.last').attr("id"));
-    //         var selectNumber = parseInt($('.select').attr("id"));
+    //         var lastIdNumber = parseInt($('.last').attr("class"));
+    //         var selectNumber = parseInt($('.select').attr("class"));
+
     //         if (selectNumber !== lastIdNumber) {
-    //             var smallPicId = $('.select').attr("id");
-    //             var smallPicIdNum = parseInt($('.select').attr("id"));
-    //             var x = smallPicIdNum + 1;
+    //             var x = selectNumber + 1;
     //             $(".smallPic").removeClass("select");
-    //             var nowSmall = $('#' + (x++) + 'small');
+    //             var nowSmall = $('.' + (x++) + 'small');
     //             nowSmall.addClass("select");
     //             var nowSmallSrc = nowSmall.attr("src");
     //             $(".mainPic").attr("src", nowSmallSrc);
     //         } else {
-    //             var smallPicId = $('.select').attr("id");
-    //             var smallPicIdNum = parseInt($('.first').attr("id"));
+    //             var smallPicIdNum = parseInt($('.first').attr("class"));
     //             var x = smallPicIdNum;
     //             $(".smallPic").removeClass("select");
-    //             var nowSmall = $('#' + (x++) + 'small');
+    //             var nowSmall = $('.' + (x++) + 'small');
     //             nowSmall.addClass("select");
     //             var nowSmallSrc = nowSmall.attr("src");
     //             $(".mainPic").attr("src", nowSmallSrc);
@@ -179,38 +244,7 @@
     //         onClickNextCallBack($nextBtn);
     //     });
 
-    // }
-
-    Module.prototype.onClickNext = function() {
-        var dataLength = this.option.data.length;
-        var pageSize = this.option.pageSize;
-        var onClickNextCallBack = this.option.onClickNext;
-        $('.up-right').on( "click" , function($nextBtn) {
-            var lastIdNumber = parseInt($('.last').attr("class"));
-            var selectNumber = parseInt($('.select').attr("class"));
-            
-            if (selectNumber !== lastIdNumber) {
-                // var smallPicId = $('.select').attr("class");
-                var x = selectNumber + 1;
-                $(".smallPic").removeClass("select");
-                var nowSmall = $('.' + (x++) + 'small');
-                nowSmall.addClass("select");
-                var nowSmallSrc = nowSmall.attr("src");
-                $(".mainPic").attr("src", nowSmallSrc);
-            } else {
-                // var smallPicId = $('.select').attr("class");
-                var smallPicIdNum = parseInt($('.first').attr("class"));
-                var x = smallPicIdNum;
-                $(".smallPic").removeClass("select");
-                var nowSmall = $('.' + (x++) + 'small');
-                nowSmall.addClass("select");
-                var nowSmallSrc = nowSmall.attr("src");
-                $(".mainPic").attr("src", nowSmallSrc);
-            }
-            onClickNextCallBack($nextBtn);
-        });
-
-    }///
+    // }//大圖閉包版本(右箭頭)
 
 
     // Module.prototype.onClickPrev = function() {
@@ -219,155 +253,43 @@
     //     var onClickPrevCallBack = this.option.onClickPrev;
     //     var x = 1;
     //     $('.up-left').on( "click", function($prevBtn) {
-    //         var firstIdNumber = parseInt($('.first').attr("id"));
-    //         var selectNumber = parseInt($('.select').attr("id"));
-
+    //         var firstIdNumber = parseInt($('.first').attr("class"));
+    //         var selectNumber = parseInt($('.select').attr("class"));
+    //         console.log(selectNumber);
+    //         console.log(firstIdNumber);
     //         if (selectNumber !== firstIdNumber) { //抓零沒有用 要馬就抓first 所以還要有一個first的class
-    //             var smallPicId = $('.select').attr("id");
-    //             var smallPicIdNum = parseInt($('.select').attr("id"));
-    //             var x = smallPicIdNum - 1;
+    //             var x = selectNumber - 1;
     //             $(".smallPic").removeClass("select");
-    //             // var dataLength =Module.DEFAULTS.data.length;
-    //             var nowSmall = $('#' + (x--) + 'small');
+    //             var nowSmall = $('.' + (x--) + 'small');
     //             nowSmall.addClass("select");
     //             var nowSmallSrc = nowSmall.attr("src");
     //             $(".mainPic").attr("src", nowSmallSrc);
     //         } else {
-    //             var smallPicId = $('.select').attr("id");
-    //             var smallPicIdNum = parseInt($('.last').attr("id"));
+    //             var smallPicIdNum = parseInt($('.last').attr("class"));
     //             var x = smallPicIdNum;
     //             $(".smallPic").removeClass("select");
-    //             // var dataLength =Module.DEFAULTS.data.length;
-    //             var nowSmall = $('#' + (x--) + 'small');
+    //             var nowSmall = $('.' + (x--) + 'small');
     //             nowSmall.addClass("select");
     //             var nowSmallSrc = nowSmall.attr("src");
     //             $(".mainPic").attr("src", nowSmallSrc);
     //         }
     //         onClickPrevCallBack($prevBtn);
     //     });
-    // }
+    // }//大圖閉包版本(左箭頭);
 
-    Module.prototype.onClickPrev = function() {
-        var dataLength = this.option.data.length;
-        var pageSize = this.option.pageSize;
-        var onClickPrevCallBack = this.option.onClickPrev;
-        var x = 1;
-        $('.up-left').on( "click", function($prevBtn) {
-            var firstIdNumber = parseInt($('.first').attr("class"));
-            var selectNumber = parseInt($('.select').attr("class"));
-            console.log(selectNumber);
-            console.log(firstIdNumber);
-            if (selectNumber !== firstIdNumber) { //抓零沒有用 要馬就抓first 所以還要有一個first的class
-                var x = selectNumber - 1;
-                $(".smallPic").removeClass("select");
-                // var dataLength =Module.DEFAULTS.data.length;
-                var nowSmall = $('.' + (x--) + 'small');
-                nowSmall.addClass("select");
-                var nowSmallSrc = nowSmall.attr("src");
-                $(".mainPic").attr("src", nowSmallSrc);
-            } else {
-                // var smallPicId = $('.select').attr("class");
-                var smallPicIdNum = parseInt($('.last').attr("class"));
-                var x = smallPicIdNum;
-                $(".smallPic").removeClass("select");
-                // var dataLength =Module.DEFAULTS.data.length;
-                var nowSmall = $('.' + (x--) + 'small');
-                nowSmall.addClass("select");
-                var nowSmallSrc = nowSmall.attr("src");
-                $(".mainPic").attr("src", nowSmallSrc);
-            }
-            onClickPrevCallBack($prevBtn);
-        });
-    }
-
-    // 	Module.prototype.onClickNextRound = function (){
-    // 	}
-
-
-    // 	Module.prototype.onClickPrevRound = function (){
-
-    // 	}
-
-
-    // Module.prototype.smallArrow = function() {
-    //     var pageNumber = this.option.pageSize;
-    //     var dataLength = this.option.data.length;
-    //     var optionData = this.option.data;
-    //     var lastPageNumber = dataLength % pageNumber;
-    //     var onClickNextRoundCallBack = this.option.onClickNextRound;
-    //     var onClickPrevRoundCallBack = this.option.onClickPrevRound;
-    //     var changePage = 0;
-    //     $(".down-right").on( "click", function($nextroundBtn) {
-    //         var smallPicIdNum = parseInt($('.select').attr("id"));
-    //         var lastIdNumber = parseInt($('.last').attr("id"));
-    //         if (lastIdNumber < 14) {
-    //             $('.smallPic_ul').empty();
-    //             changePage += pageNumber;
-    //             for (var i = 0 + changePage; i < (pageNumber + changePage) && i < 15; i++) {
-    //                 var smallPic = '<li><img class="smallPic" id="' + (i) + 'small" src="' + optionData[i] + '"></li>';
-    //                 $('.smallPic_ul').append(smallPic);
-    //                 if (i % pageNumber === 0) {
-    //                     $('.smallPic').addClass("select");
-    //                 }
-    //                 var selected = $(".smallPic").hasClass("select");
-    //                 if (selected === true) {
-    //                     var smallPicSrc = $('.select').attr("src");
-    //                     $(".mainPic").attr("src", smallPicSrc);
-    //                 }
-    //                 $(".smallPic").on( "click", function() {
-    //                     var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
-    //                     $(".smallPic").removeClass("select");
-    //                     $(this).addClass("select");
-    //                     $(".mainPic").attr("src", smallPicSrc);
-    //                 });
-    //             }
-    //         } //測試中
-    //         $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
-    //         $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class	
-    //         onClickNextRoundCallBack($nextroundBtn)
-    //     });
-
-    //     $(".down-left").on( "click", function($lastroundBtn) {
-    //         var smallPicIdNum = parseInt($('.select').attr("id"));
-    //         if (smallPicIdNum + 1 > pageNumber) {
-    //             $('.smallPic_ul').empty();
-    //             changePage -= pageNumber;
-    //             for (var i = 0 + changePage; i < (pageNumber + changePage); i++) {
-    //                 var smallPic = '<li><img class="smallPic" id="' + (i) + 'small" src="' + optionData[i] + '"></li>';
-    //                 $('.smallPic_ul').append(smallPic);
-    //                 if (i % pageNumber === 0) {
-    //                     $('.smallPic').addClass("select");
-    //                 }
-    //                 var selected = $(".smallPic").hasClass("select");
-    //                 if (selected === true) {
-    //                     var smallPicSrc = $('.select').attr("src");
-    //                     $(".mainPic").attr("src", smallPicSrc);
-    //                 }
-    //                 $(".smallPic").on( "click", function() {
-    //                     var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
-    //                     $(".smallPic").removeClass("select");
-    //                     $(this).addClass("select");
-    //                     $(".mainPic").attr("src", smallPicSrc);
-    //                 });
-    //             }
-    //         }
-    //         $('.smallPic:first').addClass('first'); //在每列第一張圖片加上'first'的class
-    //         $('.smallPic:last').addClass('last'); //在每列最後一張圖片加上'Last'的class		
-    //         onClickPrevRoundCallBack($lastroundBtn);
-    //     });
-    // }
-
-        Module.prototype.smallArrow = function() {
+    Module.prototype.smallArrow = function() {
         var pageNumber = this.option.pageSize;
         var dataLength = this.option.data.length;
         var optionData = this.option.data;
         var lastPageNumber = dataLength % pageNumber;
         var onClickNextRoundCallBack = this.option.onClickNextRound;
         var onClickPrevRoundCallBack = this.option.onClickPrevRound;
-        var changePage = 0;
-        $(".down-right").on( "click", function($nextroundBtn) {
+        // var changePage = 0;
+        $(".down-right").on("click", function($nextroundBtn) {
+            var firstIdNumber = parseInt($('.first').attr("class"));
             var smallPicIdNum = parseInt($('.select').attr("class"));
             var lastIdNumber = parseInt($('.last').attr("class"));
+            var changePage = firstIdNumber;
             if (lastIdNumber < 14) {
                 $('.smallPic_ul').empty();
                 changePage += pageNumber;
@@ -382,7 +304,7 @@
                         var smallPicSrc = $('.select').attr("src");
                         $(".mainPic").attr("src", smallPicSrc);
                     }
-                    $(".smallPic").on( "click", function() {
+                    $(".smallPic").on("click", function() {
                         var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
                         $(".smallPic").removeClass("select");
                         $(this).addClass("select");
@@ -395,9 +317,11 @@
             onClickNextRoundCallBack($nextroundBtn)
         });
 
-        $(".down-left").on( "click", function($lastroundBtn) {
+        $(".down-left").on("click", function($lastroundBtn) {
+            var firstIdNumber = parseInt($('.first').attr("class"));
+            var changePage = firstIdNumber;
             var smallPicIdNum = parseInt($('.select').attr("class"));
-            if (smallPicIdNum + 1 > pageNumber) {
+            if (firstIdNumber > 0) {
                 $('.smallPic_ul').empty();
                 changePage -= pageNumber;
                 for (var i = 0 + changePage; i < (pageNumber + changePage); i++) {
@@ -411,7 +335,7 @@
                         var smallPicSrc = $('.select').attr("src");
                         $(".mainPic").attr("src", smallPicSrc);
                     }
-                    $(".smallPic").on( "click", function() {
+                    $(".smallPic").on("click", function() {
                         var smallPicSrc = this.src; //這裡的this指向觸發click事件的物件
                         $(".smallPic").removeClass("select");
                         $(this).addClass("select");
