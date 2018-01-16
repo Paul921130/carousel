@@ -16,7 +16,7 @@
     <div id="test1"></div>
     <div class="container">
         <div class="row">
-            <div class="col-lg-12 col-md-12 col-xs-12">
+            <div class="col-lg-10 col-md-10 col-xs-10">
                 <!-- 制定HTML結構 開始  -->
                 <div class="carousel">
                 </div>
@@ -43,25 +43,25 @@
             'http://fakeimg.pl/350x300/?text=World&font=lobster',
             'http://fakeimg.pl/350x400/?text=Hello',
         ],
-        pageSize: 5, //縮略圖個數 this.option.pageSize
+        pageSize: 6, //縮略圖個數 this.option.pageSize
         // // 點擊看大圖時執行 callback
-        onClickBigImg: function($bigimgBtn){
+        onClickBigImg: function($bigimgBtn) {
             console.log($bigimgBtn)
-        },//callBack jquery選取物件
+        }, //callBack jquery選取物件
         // 點擊下一張圖時執行 callback
-        onClickNext: function($nextBtn){
+        onClickNext: function($nextBtn) {
             console.log($nextBtn)
         },
         // // 點擊上一張圖時執行 callback
-        onClickPrev: function($prevBtn){
+        onClickPrev: function($prevBtn) {
             console.log($prevBtn)
         },
         // 點擊下一組圖時執行 callback!!!
-        onClickNextRound: function($nextroundBtn){
+        onClickNextRound: function($nextroundBtn) {
             console.log($nextroundBtn)
         },
         // 點擊上一組圖時執行 callback!!!
-        onClickPrevRound: function($lastroundBtn){
+        onClickPrevRound: function($lastroundBtn) {
             console.log($lastroundBtn)
         }
     });
