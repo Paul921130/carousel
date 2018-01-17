@@ -176,7 +176,7 @@
                 $(".smallPic").removeClass("select");
                 var nowSmall = $('.' + (x--) + 'small');
                 nowSmall.addClass("select");
-                var nowSmallSrc = nowSmall.attr("src");
+                var nowSmallSrc = nowSmalls.attr("src");
                 $(".mainPic").attr("src", nowSmallSrc);
             } else if (selectNumber == firstIdNumber && firstIdNumber > 0) {
                 $('.smallPic_ul').empty();
