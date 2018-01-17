@@ -33,8 +33,9 @@ a:hover{
 	left: 0;
 	bottom: 0;
 	right: 0;
-	margin: auto
+	margin: auto;
 }
+
  @media only screen and (max-width: 2100px) {
 
 	.up{
@@ -53,7 +54,7 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 300px;
+		height: 310px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
@@ -115,7 +116,7 @@ a:hover{
 
 	.down > ul > li > img{
 		width: 85px;
-		object-fit: cover;
+		object-fit:cover;
 		cursor: pointer;
 	}
 	.select{
@@ -126,7 +127,7 @@ a:hover{
  @media only screen and (max-width: 1280px) {
 	.up{
 		width: 100%;
-		display:fle x;
+		display:flex;
 		align-items:center;
 	}
 	.up a, .up .upcontent{
@@ -140,7 +141,7 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 260px;
+		height: 270px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
@@ -186,7 +187,7 @@ a:hover{
 	}
 
 	.down>ul{
-		display: flex;
+		display:flex;
 		margin-bottom: 0;
 		align-items:center;
 		justify-content:space-around;
@@ -222,7 +223,7 @@ a:hover{
 	}
 	.upcontent{
 		color: #909090;	
-		height: 220px;
+		height: 230px;
 		text-align: center;
 		margin: 0 auto;
 		font-weight: bolder;
